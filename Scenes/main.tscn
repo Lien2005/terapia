@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://c23bgi0tax2pw" path="res://Scenes/camera.tscn" id="1_jjgbg"]
 [ext_resource type="ArrayMesh" uid="uid://crcwr66xsdc76" path="res://Meshes/Nature/short_grass.tres" id="2_8gbba"]
-[ext_resource type="ArrayMesh" uid="uid://ctgnps5frwxri" path="res://Meshes/Nature/short_grass_wispy.res" id="3_21xkr"]
+[ext_resource type="ArrayMesh" uid="uid://cwrsvgwvxdf1x" path="res://Meshes/Nature/short_grass_wispy.res" id="3_21xkr"]
 [ext_resource type="ArrayMesh" uid="uid://mfs0e3w8cg4w" path="res://Meshes/Nature/green_tree_1.tres" id="4_6bp64"]
 [ext_resource type="Script" uid="uid://c2era8oplkuj0" path="res://Scenes/fps_label.gd" id="4_jjvhh"]
-[ext_resource type="ArrayMesh" uid="uid://bhpcfcrfrk5ld" path="res://Meshes/Nature/bush.res" id="5_6bp64"]
+[ext_resource type="ArrayMesh" uid="uid://cfurbcl3rjckt" path="res://Meshes/Nature/bush.res" id="5_6bp64"]
 [ext_resource type="AudioStream" uid="uid://dnfcswt06ggsm" path="res://Audio/freesound_community-birds-19624.mp3" id="5_kry3j"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jjgbg"]
@@ -86,10 +86,10 @@ multimesh = SubResource("MultiMesh_kry3j")
 
 [node name="SmallGrassMultiMesh" type="MultiMeshInstance3D" parent="Ground/Plane" unique_id=658255709]
 visible = false
+cast_shadow = 0
 multimesh = SubResource("MultiMesh_344ge")
 
 [node name="TreeMultiMesh" type="MultiMeshInstance3D" parent="Ground/Plane" unique_id=487050755]
-visible = false
 multimesh = SubResource("MultiMesh_6bp64")
 
 [node name="BushMultiMesh" type="MultiMeshInstance3D" parent="Ground/Plane" unique_id=1066449446]
@@ -106,8 +106,10 @@ offset_bottom = 40.0
 
 [node name="Label" type="Label" parent="CanvasLayer/Control" unique_id=2016392830]
 layout_mode = 0
-offset_right = 40.0
+offset_right = 64.0
 offset_bottom = 23.0
+theme_override_font_sizes/font_size = 16
+text = "FPS: 100"
 script = ExtResource("4_jjvhh")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1078973027]
