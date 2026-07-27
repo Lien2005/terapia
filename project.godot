@@ -21,13 +21,8 @@ Global="*uid://cv8pwyxfxb37l"
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=360
 window/size/mode=3
 window/size/initial_position=Vector2i(0, 348)
-window/size/window_width_override=1280
-window/size/window_height_override=720
-window/stretch/mode="viewport"
 window/vsync/vsync_mode=0
 
 [input]
@@ -80,5 +75,3 @@ sprint={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
