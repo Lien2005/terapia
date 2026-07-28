@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://i0aim5l5hdn3" path="res://Assets/Nature/glTF/Leaves_NormalTree_C.png" id="3_los1b"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0bs4g"]
-size = Vector3(1, 4.203247, 1)
+size = Vector3(0.52246094, 4.203247, 0.56152344)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ib7xo"]
 resource_name = "Leaves_NormalTree"
@@ -36,7 +36,7 @@ shader_parameter/bendieness_multiplier = 0.0
 [node name="GreenTree3" type="StaticBody3D" unique_id=1963311074]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2113864025]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1451755, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04345703, 2.1451755, 0.16206193)
 shape = SubResource("BoxShape3D_0bs4g")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1053184373]

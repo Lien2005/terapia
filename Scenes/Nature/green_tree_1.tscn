@@ -3,12 +3,12 @@
 [ext_resource type="ArrayMesh" uid="uid://mfs0e3w8cg4w" path="res://Meshes/Nature/green_tree_1.tres" id="1_f4d1s"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0bs4g"]
-size = Vector3(1, 4.203247, 1)
+size = Vector3(0.7998047, 4.203247, 0.5073242)
 
 [node name="GreenTree1" type="StaticBody3D" unique_id=1963311074]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2113864025]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1451755, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.100097656, 2.1451755, 0.14840245)
 shape = SubResource("BoxShape3D_0bs4g")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1053184373]
