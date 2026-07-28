@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://uqupnowbvcwm"]
+
+[ext_resource type="ArrayMesh" uid="uid://twxcrvlidcy1" path="res://Meshes/Nature/bush_1.res" id="1_kijnn"]
+
+[node name="Bush1" type="MeshInstance3D" unique_id=318323392]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+lod_bias = 128.0
+visibility_range_end = 100.0
+mesh = ExtResource("1_kijnn")

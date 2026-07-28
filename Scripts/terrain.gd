@@ -1,5 +1,6 @@
 @tool
 extends MeshInstance3D
+
 @export var size := 256.0:
 	set(new_size):
 		size = new_size
@@ -24,14 +25,28 @@ extends MeshInstance3D
 			material_override.set_shader_parameter("height", height * 2.0)
 		if is_inside_tree():
 			update_mesh()
-@export var tree_count: int = 256:
+@export var tree_count: int = 512:
 	set(new_count):
 		tree_count = new_count
 		if is_inside_tree():
 			spawn_trees()
+@export var bush_count: int = 64:
+	set(new_count):
+		bush_count = new_count
+		if is_inside_tree():
+			spawn_bushes()
+@export var rock_count: int = 256:
+	set(new_count):
+		rock_count = new_count
+		if is_inside_tree():
+			spawn_rocks()
+			
 @export var tree_scene_1: PackedScene
 @export var tree_scene_2: PackedScene
 @export var tree_scene_3: PackedScene
+@export var bush_scene_1: PackedScene
+@export var rock_scene_1: PackedScene
+@export var rock_scene_2: PackedScene
 
 func _ready() -> void:
 	update_mesh()
@@ -82,6 +97,8 @@ func update_mesh() -> void:
 	create_trimesh_collision()
 
 	spawn_trees()
+	spawn_bushes()
+	spawn_rocks()
 
 func spawn_trees() -> void:
 	if not is_inside_tree() or not noise:
@@ -106,4 +123,55 @@ func spawn_trees() -> void:
 		var z := randf_range(-size / 2, size / 2)
 		var y: float = get_height(x, z)
 		tree.position = Vector3(x, y, z)
-		tree.scale *= 1 + randf() * 2
+		tree.scale *= 2 + randf()
+
+func spawn_rocks() -> void:
+	if not is_inside_tree() or not noise:
+		return
+	var old_container := get_node_or_null("Rocks")
+	if old_container:
+		remove_child(old_container)
+		old_container.free()
+
+	var rock_container := Node3D.new()
+	rock_container.name = "Rocks"
+	add_child(rock_container)
+
+	var rocks := [rock_scene_1, rock_scene_2]
+	for i in range(rock_count):
+		var scene: PackedScene = rocks[randi() % rocks.size()]
+		if not scene:
+			continue
+		var rock := scene.instantiate()
+		rock_container.add_child(rock)
+		var x := randf_range(-size / 2, size / 2)
+		var z := randf_range(-size / 2, size / 2)
+		var y: float = get_height(x, z)
+		rock.position = Vector3(x, y, z)
+		rock.scale *= 2 + randf()
+
+func spawn_bushes() -> void:
+	if not is_inside_tree() or not noise:
+		return
+	var old_container := get_node_or_null("Bushes")
+	if old_container:
+		remove_child(old_container)
+		old_container.free()
+
+	var bush_container := Node3D.new()
+	bush_container.name = "Bushes"
+	add_child(bush_container)
+
+	var bushes := [bush_scene_1]
+	for i in range(bush_count):
+		var scene: PackedScene = bushes[randi() % bushes.size()]
+		if not scene:
+			continue
+		var bush := scene.instantiate()
+		bush_container.add_child(bush)
+		var x := randf_range(-size / 2, size / 2)
+		var z := randf_range(-size / 2, size / 2)
+		var y: float = get_height(x, z)
+		bush.position = Vector3(x, y, z)
+		var rand_scale: float = abs(0.5 - randf()) * 0.4
+		bush.scale += Vector3(rand_scale, rand_scale, rand_scale)

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://df2uvgq7qer8"]
+
+[ext_resource type="ArrayMesh" uid="uid://dmbjcmyf62eps" path="res://Meshes/Nature/rock_2.res" id="1_rlb0x"]
+
+[node name="Rock2" type="MeshInstance3D" unique_id=319423391]
+transform = Transform3D(10, 0, 0, 0, -2.5881906, 9.659258, 0, -9.659258, -2.5881906, 0, 0, 0)
+visibility_range_end = 50.0
+mesh = ExtResource("1_rlb0x")
