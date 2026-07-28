@@ -105,5 +105,5 @@ func spawn_trees() -> void:
 		var x := randf_range(-size / 2, size / 2)
 		var z := randf_range(-size / 2, size / 2)
 		var y: float = get_height(x, z)
-		tree.position = Vector3(x, y - 0.7, z)
-		tree.scale *= 1 + randf() * 1.5
+		tree.position = Vector3(x, y, z)
+		tree.scale *= 1 + randf() * 2

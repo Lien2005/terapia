@@ -1,17 +1,18 @@
 [gd_scene format=3 uid="uid://d22bh2e8oivbx"]
 
-[ext_resource type="ArrayMesh" uid="uid://mfs0e3w8cg4w" path="res://Meshes/Nature/green_tree_1.tres" id="1_f4d1s"]
+[ext_resource type="ArrayMesh" uid="uid://bw358h618q8wl" path="res://Meshes/Nature/tree_1.res" id="1_f4d1s"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0bs4g"]
-size = Vector3(0.7998047, 4.203247, 0.5073242)
+size = Vector3(0.1, 3, 0.1)
 
 [node name="GreenTree1" type="StaticBody3D" unique_id=1963311074]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2113864025]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.100097656, 2.1451755, 0.14840245)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("BoxShape3D_0bs4g")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1053184373]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.23924768, 0)
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 lod_bias = 128.0
+visibility_range_end = 100.0
 mesh = ExtResource("1_f4d1s")
