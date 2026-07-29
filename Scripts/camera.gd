@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+@export var flashlight: SpotLight3D
+@export var flashlight_stream_player_3d: AudioStreamPlayer3D
+@export var footstep_stream_player_3d: AudioStreamPlayer3D
 
 var speed: float
 var walk_speed: float = 3.0
@@ -9,8 +12,10 @@ var sensitivity: float = Global.sensitivity
 
 #bob variables
 var bob_freq: float = 2.4
-var bob_amp: float = 0.04
+var bob_amp: float = 0.08
 var t_bob: float = 0.0
+var footstep_can_play: bool = true
+var footstep_landed: bool
 
 #fov variables
 var base_fov: float = 75.0
@@ -31,6 +36,9 @@ func _unhandled_input(event):
 		head.rotate_y(-event.relative.x * sensitivity)
 		camera.rotate_x(-event.relative.y * sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-70), deg_to_rad(70))
+	if event.is_action_pressed("flashlight"):
+		flashlight.visible = not flashlight.visible
+		flashlight_stream_player_3d.play()
 
 
 func _physics_process(delta):
@@ -70,14 +78,26 @@ func _physics_process(delta):
 	var velocity_clamped = clamp(velocity.length(), 0.5, sprint_speed * 2)
 	var target_fov = base_fov + fov_change * velocity_clamped
 	camera.fov = lerp(camera.fov, target_fov, delta * 8.0)
-	
-	move_and_slide()
 
+	move_and_slide()
+	
+	if not footstep_landed and is_on_floor():
+		footstep_stream_player_3d.play()
+	elif footstep_landed and not is_on_floor():
+		footstep_stream_player_3d.play()
+	footstep_landed = is_on_floor()
 
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
 	pos.y = sin(time * bob_freq) * bob_amp
 	pos.x = cos(time * bob_freq / 2) * bob_amp
+	
+	var footstep_threshold = -bob_amp + 0.004
+	if pos.y > footstep_threshold:
+		footstep_can_play = true
+	elif pos.y < footstep_threshold and footstep_can_play:
+		footstep_can_play = false
+		footstep_stream_player_3d.play()
 	return pos
 
 func _change_sens(value) -> void:

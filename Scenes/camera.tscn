@@ -1,11 +1,25 @@
 [gd_scene format=3 uid="uid://c23bgi0tax2pw"]
 
 [ext_resource type="Script" uid="uid://ds3r2utio6we4" path="res://Scripts/camera.gd" id="1_375tr"]
+[ext_resource type="AudioStream" uid="uid://bsu3k76bc4081" path="res://Audio/flashlight.mp3" id="2_f1cf7"]
+[ext_resource type="AudioStream" uid="uid://froh1eurs3rl" path="res://Audio/footstep_1.wav" id="3_pqp4w"]
+[ext_resource type="AudioStream" uid="uid://cixn411qb1bdx" path="res://Audio/footstep_2.wav" id="4_7o1f6"]
+[ext_resource type="AudioStream" uid="uid://bhr6dbssi8gv4" path="res://Audio/footstep_3.wav" id="5_c66t7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0bs4g"]
 
-[node name="Camera" type="CharacterBody3D" unique_id=701550866]
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_f1cf7"]
+random_pitch = 1.0717734
+streams_count = 3
+stream_0/stream = ExtResource("3_pqp4w")
+stream_1/stream = ExtResource("4_7o1f6")
+stream_2/stream = ExtResource("5_c66t7")
+
+[node name="Camera" type="CharacterBody3D" unique_id=701550866 node_paths=PackedStringArray("flashlight", "flashlight_stream_player_3d", "footstep_stream_player_3d")]
 script = ExtResource("1_375tr")
+flashlight = NodePath("Head/Camera3D/Flashlight")
+flashlight_stream_player_3d = NodePath("FlashlightStreamPlayer3D")
+footstep_stream_player_3d = NodePath("FootstepStreamPlayer3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1716794259]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -16,3 +30,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=275447327]
 current = true
+
+[node name="Flashlight" type="SpotLight3D" parent="Head/Camera3D" unique_id=972214928]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3261063, -0.081768036)
+light_color = Color(1, 0.96166664, 0.53999996, 1)
+light_energy = 4.0
+light_indirect_energy = 2.0
+light_volumetric_fog_energy = 0.1
+spot_range = 100.0
+spot_attenuation = 0.8
+spot_angle_attenuation = 3.0
+
+[node name="FlashlightStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1138232658]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0415332, 0)
+stream = ExtResource("2_f1cf7")
+volume_db = 40.0
+max_db = 6.0
+
+[node name="FootstepStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1591196942]
+stream = SubResource("AudioStreamRandomizer_f1cf7")
+volume_db = -15.0
