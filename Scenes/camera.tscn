@@ -2,11 +2,19 @@
 
 [ext_resource type="Script" uid="uid://ds3r2utio6we4" path="res://Scripts/camera.gd" id="1_375tr"]
 [ext_resource type="AudioStream" uid="uid://bsu3k76bc4081" path="res://Audio/flashlight.mp3" id="2_f1cf7"]
+[ext_resource type="PackedScene" uid="uid://cvq7rrb52wjbj" path="res://Scenes/eyes.tscn" id="2_pqp4w"]
 [ext_resource type="AudioStream" uid="uid://froh1eurs3rl" path="res://Audio/footstep_1.wav" id="3_pqp4w"]
 [ext_resource type="AudioStream" uid="uid://cixn411qb1bdx" path="res://Audio/footstep_2.wav" id="4_7o1f6"]
 [ext_resource type="AudioStream" uid="uid://bhr6dbssi8gv4" path="res://Audio/footstep_3.wav" id="5_c66t7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0bs4g"]
+
+[sub_resource type="Curve3D" id="Curve3D_tpyrd"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, -1, 0, 0, 0, 0, 3, -1, 0, 0, 0, 0, 0, -2, 0, 1),
+"tilts": PackedFloat32Array(0, 0)
+}
+point_count = 2
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_f1cf7"]
 random_pitch = 1.0717734
@@ -20,6 +28,7 @@ script = ExtResource("1_375tr")
 flashlight = NodePath("Head/Camera3D/Flashlight")
 flashlight_stream_player_3d = NodePath("FlashlightStreamPlayer3D")
 footstep_stream_player_3d = NodePath("FootstepStreamPlayer3D")
+eyes = ExtResource("2_pqp4w")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1716794259]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -41,6 +50,14 @@ spot_range = 100.0
 spot_attenuation = 0.8
 spot_angle_attenuation = 3.0
 
+[node name="EyePath" type="Path3D" parent="Head" unique_id=2069339310]
+transform = Transform3D(-1.7331566e-07, 0, -3.965, 0, 3.965, 0, 3.965, 0, -1.7331566e-07, -9.059947, 1, -16.517)
+curve = SubResource("Curve3D_tpyrd")
+
+[node name="EyeLocation" type="PathFollow3D" parent="Head/EyePath" unique_id=416201041]
+unique_name_in_owner = true
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 3)
+
 [node name="FlashlightStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1138232658]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0415332, 0)
 stream = ExtResource("2_f1cf7")
@@ -50,3 +67,9 @@ max_db = 6.0
 [node name="FootstepStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1591196942]
 stream = SubResource("AudioStreamRandomizer_f1cf7")
 volume_db = -15.0
+
+[node name="Timer" type="Timer" parent="." unique_id=1426055572]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

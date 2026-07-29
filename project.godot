@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Terápia"
-run/main_scene="uid://23tpjpo4ic71"
+run/main_scene="uid://bf1er2k4yrs72"
 config/features=PackedStringArray("4.7", "Forward Plus")
 boot_splash/show_image=false
 boot_splash/use_filter=false

@@ -204,9 +204,9 @@ bush_scene_1 = ExtResource("14_k12tt")
 rock_scene_1 = ExtResource("11_fdnlq")
 rock_scene_2 = ExtResource("15_wsu2k")
 
-[node name="Terrain_col" type="StaticBody3D" parent="Terrain" unique_id=375155246]
+[node name="Terrain_col" type="StaticBody3D" parent="Terrain" unique_id=428767310]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Terrain_col" unique_id=314616462]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Terrain_col" unique_id=800704317]
 shape = SubResource("ConcavePolygonShape3D_h1bgf")
 
 [connection signal="toggled" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/FPSCheckButton" to="UI/Menu" method="_on_fps_check_button_toggled"]

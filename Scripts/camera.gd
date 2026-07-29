@@ -3,6 +3,7 @@ extends CharacterBody3D
 @export var flashlight: SpotLight3D
 @export var flashlight_stream_player_3d: AudioStreamPlayer3D
 @export var footstep_stream_player_3d: AudioStreamPlayer3D
+@export var eyes: PackedScene
 
 var speed: float
 var walk_speed: float = 3.0
@@ -42,7 +43,6 @@ func _unhandled_input(event):
 
 
 func _physics_process(delta):
-	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
@@ -102,3 +102,14 @@ func _headbob(time) -> Vector3:
 
 func _change_sens(value) -> void:
 	sensitivity = value
+
+
+func _on_timer_timeout() -> void:
+	if flashlight.visible:
+		return
+	var eye = eyes.instantiate()
+	var eye_spawn_location = %EyeLocation
+	eye_spawn_location.progress_ratio = randf()
+	eye.visible = false
+	add_child(eye)
+	eye.global_position = eye_spawn_location.global_position

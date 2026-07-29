@@ -14,5 +14,5 @@ seamless = true
 sky_top_color = Color(0.2945, 0.56762505, 0.95, 1)
 sky_horizon_color = Color(0.62, 0.7656666, 1, 1)
 sky_cover = SubResource("NoiseTexture2D_jsnfr")
-ground_bottom_color = Color(0.09869999, 0.47, 0.23484328, 1)
-ground_horizon_color = Color(0.06479999, 0.72, 0.53436005, 1)
+ground_bottom_color = Color(0.83, 0.80842, 0.5063, 1)
+ground_horizon_color = Color(0.97412, 0.98, 0.8036, 1)
