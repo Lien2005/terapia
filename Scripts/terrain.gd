@@ -40,13 +40,18 @@ extends MeshInstance3D
 		rock_count = new_count
 		if is_inside_tree():
 			spawn_rocks()
-			
+@export var grass_count: int = 1024:
+	set(new_count):
+		grass_count = new_count
+		if is_inside_tree():
+			spawn_grass()
 @export var tree_scene_1: PackedScene
 @export var tree_scene_2: PackedScene
 @export var tree_scene_3: PackedScene
 @export var bush_scene_1: PackedScene
 @export var rock_scene_1: PackedScene
 @export var rock_scene_2: PackedScene
+@export var grass_patch_scene_1: PackedScene
 
 func _ready() -> void:
 	update_mesh()
@@ -56,11 +61,9 @@ func get_height(x: float, y: float) -> float:
 
 func get_normal(x: float, y: float) -> Vector3:
 	var epsilon := size / resolution
-	var normal := Vector3(
-		(get_height(x + epsilon, y) - get_height(x - epsilon, y)) / (2.0 * epsilon),
-		1.0,
-		(get_height(x, y + epsilon) - get_height(x, y - epsilon)) / (2.0 * epsilon),
-	)
+	var dx := (get_height(x + epsilon, y) - get_height(x - epsilon, y)) / (2.0 * epsilon)
+	var dz := (get_height(x, y + epsilon) - get_height(x, y - epsilon)) / (2.0 * epsilon)
+	var normal := Vector3(-dx, 1.0, -dz)
 	return normal.normalized()
 
 func update_mesh() -> void:
@@ -99,6 +102,7 @@ func update_mesh() -> void:
 	spawn_trees()
 	spawn_bushes()
 	spawn_rocks()
+	spawn_grass()
 
 func spawn_trees() -> void:
 	if not is_inside_tree() or not noise:
@@ -175,3 +179,27 @@ func spawn_bushes() -> void:
 		bush.position = Vector3(x, y, z)
 		var rand_scale: float = abs(0.5 - randf()) * 0.4
 		bush.scale += Vector3(rand_scale, rand_scale, rand_scale)
+
+func spawn_grass() -> void:
+	if not is_inside_tree() or not noise:
+		return
+	var old_container := get_node_or_null("Grasses")
+	if old_container:
+		remove_child(old_container)
+		old_container.free()
+
+	var grass_container := Node3D.new()
+	grass_container.name = "Grasses"
+	add_child(grass_container)
+
+	var grasses := [grass_patch_scene_1]
+	for i in range(grass_count):
+		var scene: PackedScene = grasses[randi() % grasses.size()]
+		if not scene:
+			continue
+		var grass := scene.instantiate()
+		grass_container.add_child(grass)
+		var x := randf_range(-size / 2, size / 2)
+		var z := randf_range(-size / 2, size / 2)
+		var y: float = get_height(x, z)
+		grass.position = Vector3(x, y, z)

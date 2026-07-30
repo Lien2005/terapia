@@ -4,6 +4,6 @@
 
 [node name="Bush1" type="MeshInstance3D" unique_id=318323392]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-lod_bias = 128.0
-visibility_range_end = 100.0
+lod_bias = 0.001
+visibility_range_end = 20.0
 mesh = ExtResource("1_kijnn")

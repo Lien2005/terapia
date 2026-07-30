@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://ds3r2utio6we4" path="res://Scripts/camera.gd" id="1_375tr"]
 [ext_resource type="AudioStream" uid="uid://bsu3k76bc4081" path="res://Audio/flashlight.mp3" id="2_f1cf7"]
-[ext_resource type="PackedScene" uid="uid://cvq7rrb52wjbj" path="res://Scenes/eyes.tscn" id="2_pqp4w"]
-[ext_resource type="AudioStream" uid="uid://froh1eurs3rl" path="res://Audio/footstep_1.wav" id="3_pqp4w"]
-[ext_resource type="AudioStream" uid="uid://cixn411qb1bdx" path="res://Audio/footstep_2.wav" id="4_7o1f6"]
-[ext_resource type="AudioStream" uid="uid://bhr6dbssi8gv4" path="res://Audio/footstep_3.wav" id="5_c66t7"]
+[ext_resource type="PackedScene" uid="uid://cvq7rrb52wjbj" path="res://Scenes/Scary/eyes.tscn" id="2_pqp4w"]
+[ext_resource type="AudioStream" uid="uid://froh1eurs3rl" path="res://Audio/Footsteps/footstep_1.wav" id="3_pqp4w"]
+[ext_resource type="AudioStream" uid="uid://cixn411qb1bdx" path="res://Audio/Footsteps/footstep_2.wav" id="4_7o1f6"]
+[ext_resource type="AudioStream" uid="uid://bhr6dbssi8gv4" path="res://Audio/Footsteps/footstep_3.wav" id="5_c66t7"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0bs4g"]
 
@@ -43,11 +43,12 @@ current = true
 [node name="Flashlight" type="SpotLight3D" parent="Head/Camera3D" unique_id=972214928]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3261063, -0.081768036)
 light_color = Color(1, 0.96166664, 0.53999996, 1)
-light_energy = 4.0
+light_energy = 12.0
 light_indirect_energy = 2.0
-light_volumetric_fog_energy = 0.1
+light_volumetric_fog_energy = 2.0
 spot_range = 100.0
 spot_attenuation = 0.8
+spot_angle = 30.0
 spot_angle_attenuation = 3.0
 
 [node name="EyePath" type="Path3D" parent="Head" unique_id=2069339310]

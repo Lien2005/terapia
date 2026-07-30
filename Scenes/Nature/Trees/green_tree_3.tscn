@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://rau1humovk0c"]
+
+[ext_resource type="ArrayMesh" uid="uid://c4tdagapx3yxd" path="res://Meshes/Nature/Trees/tree_3.res" id="1_q8hlo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0bs4g"]
+size = Vector3(0.26953125, 4.203247, 0.2109375)
+
+[node name="GreenTree3" type="StaticBody3D" unique_id=1963311074]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2113864025]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04345703, 2.1451755, 0.036329508)
+shape = SubResource("BoxShape3D_0bs4g")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1053184373]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+lod_bias = 0.001
+visibility_range_end = 100.0
+mesh = ExtResource("1_q8hlo")
