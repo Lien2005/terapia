@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://ds3r2utio6we4" path="res://Scripts/camera.gd" id="1_375tr"]
 [ext_resource type="AudioStream" uid="uid://bsu3k76bc4081" path="res://Audio/flashlight.mp3" id="2_f1cf7"]
 [ext_resource type="PackedScene" uid="uid://cvq7rrb52wjbj" path="res://Scenes/Scary/eyes.tscn" id="2_pqp4w"]
+[ext_resource type="Script" uid="uid://xfcurdb61oga" path="res://Scripts/flashlight.gd" id="3_7o1f6"]
 [ext_resource type="AudioStream" uid="uid://froh1eurs3rl" path="res://Audio/Footsteps/footstep_1.wav" id="3_pqp4w"]
 [ext_resource type="AudioStream" uid="uid://cixn411qb1bdx" path="res://Audio/Footsteps/footstep_2.wav" id="4_7o1f6"]
 [ext_resource type="AudioStream" uid="uid://bhr6dbssi8gv4" path="res://Audio/Footsteps/footstep_3.wav" id="5_c66t7"]
@@ -23,10 +24,9 @@ stream_0/stream = ExtResource("3_pqp4w")
 stream_1/stream = ExtResource("4_7o1f6")
 stream_2/stream = ExtResource("5_c66t7")
 
-[node name="Camera" type="CharacterBody3D" unique_id=701550866 node_paths=PackedStringArray("flashlight", "flashlight_stream_player_3d", "footstep_stream_player_3d")]
+[node name="Camera" type="CharacterBody3D" unique_id=701550866 node_paths=PackedStringArray("flashlight", "footstep_stream_player_3d")]
 script = ExtResource("1_375tr")
 flashlight = NodePath("Head/Camera3D/Flashlight")
-flashlight_stream_player_3d = NodePath("FlashlightStreamPlayer3D")
 footstep_stream_player_3d = NodePath("FootstepStreamPlayer3D")
 eyes = ExtResource("2_pqp4w")
 
@@ -40,7 +40,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=275447327]
 current = true
 
-[node name="Flashlight" type="SpotLight3D" parent="Head/Camera3D" unique_id=972214928]
+[node name="Flashlight" type="SpotLight3D" parent="Head/Camera3D" unique_id=972214928 node_paths=PackedStringArray("progress_bar", "flashlight_stream_player_3d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3261063, -0.081768036)
 light_color = Color(1, 0.96166664, 0.53999996, 1)
 light_energy = 12.0
@@ -50,6 +50,9 @@ spot_range = 100.0
 spot_attenuation = 0.8
 spot_angle = 30.0
 spot_angle_attenuation = 3.0
+script = ExtResource("3_7o1f6")
+progress_bar = NodePath("../../../ProgressBar")
+flashlight_stream_player_3d = NodePath("../../../FlashlightStreamPlayer3D")
 
 [node name="EyePath" type="Path3D" parent="Head" unique_id=2069339310]
 transform = Transform3D(-1.7331566e-07, 0, -3.965, 0, 3.965, 0, 3.965, 0, -1.7331566e-07, -9.059947, 1, -16.517)
@@ -72,5 +75,21 @@ volume_db = -15.0
 [node name="Timer" type="Timer" parent="." unique_id=1426055572]
 wait_time = 10.0
 autostart = true
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=102147079]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -77.0
+offset_top = -27.0
+offset_right = 77.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 100000.0
+step = 1.0
+value = 100000.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,7 +1,6 @@
 extends CharacterBody3D
 
 @export var flashlight: SpotLight3D
-@export var flashlight_stream_player_3d: AudioStreamPlayer3D
 @export var footstep_stream_player_3d: AudioStreamPlayer3D
 @export var eyes: PackedScene
 
@@ -37,10 +36,6 @@ func _unhandled_input(event):
 		head.rotate_y(-event.relative.x * sensitivity)
 		camera.rotate_x(-event.relative.y * sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-70), deg_to_rad(70))
-	if event.is_action_pressed("flashlight"):
-		flashlight.visible = not flashlight.visible
-		flashlight_stream_player_3d.play()
-
 
 func _physics_process(delta):
 	if not is_on_floor():
