@@ -87,7 +87,7 @@ func _headbob(time) -> Vector3:
 	pos.y = sin(time * bob_freq) * bob_amp
 	pos.x = cos(time * bob_freq / 2) * bob_amp
 	
-	var footstep_threshold = -bob_amp + 0.004
+	var footstep_threshold = -bob_amp + 0.04
 	if pos.y > footstep_threshold:
 		footstep_can_play = true
 	elif pos.y < footstep_threshold and footstep_can_play:

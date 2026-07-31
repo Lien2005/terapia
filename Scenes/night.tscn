@@ -39,6 +39,30 @@ volumetric_fog_albedo = Color(0.31, 0.31, 0.31, 1)
 adjustment_enabled = true
 adjustment_brightness = 1.2
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_udoo7"]
+content_margin_left = 4.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+color = Color(0.5, 0.5, 0.5, 1)
+thickness = 4
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_fur6u"]
+content_margin_left = 4.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+color = Color(0.5, 0.5, 0.5, 1)
+thickness = 4
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_7g1oc"]
+content_margin_left = 4.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+color = Color(0.5, 0.5, 0.5, 1)
+thickness = 4
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_udoo7"]
 _surfaces = [{
 "aabb": AABB(-128, -8.206634, -128, 256, 16.434795, 256),
@@ -84,67 +108,101 @@ environment = SubResource("Environment_t1olt")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1051857129]
 
+[node name="SubViewportContainer" type="SubViewportContainer" parent="UI" unique_id=956718318]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 4
+
+[node name="SubViewport" type="SubViewport" parent="UI/SubViewportContainer" unique_id=1597184442]
+handle_input_locally = false
+scaling_3d_mode = 5
+canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
+audio_listener_enable_3d = true
+size = Vector2i(480, 270)
+render_target_update_mode = 4
+
+[node name="Camera" parent="UI/SubViewportContainer/SubViewport" unique_id=701550866 instance=ExtResource("5_ayv6d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1164708, 0)
+
 [node name="Menu" type="Control" parent="UI" unique_id=642241204 node_paths=PackedStringArray("panel_container", "quit_button", "fps_label")]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("2_udoo7")
 panel_container = NodePath("PanelContainer")
 quit_button = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/QuitButton")
 fps_label = NodePath("../FPSLabel")
-metadata/_edit_use_anchors_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="UI/Menu" unique_id=1832222838]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 12.000001
 anchor_bottom = 6.7500005
-offset_left = 120.0
-offset_top = 49.5
-offset_right = -120.00003
-offset_bottom = -50.50003
+offset_left = 480.0
+offset_top = 270.0
+offset_right = -21600.002
+offset_bottom = -6480.0005
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Panel" type="Panel" parent="UI/Menu/PanelContainer" unique_id=931400823]
 layout_mode = 2
 mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/Menu/PanelContainer/Panel" unique_id=385591796]
-layout_mode = 0
-offset_left = 10.0
-offset_top = 7.5
-offset_right = 230.0
-offset_bottom = 127.5
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Menu/PanelContainer/Panel/MarginContainer" unique_id=72402595]
 layout_mode = 2
+theme_override_constants/separation = 40
 
-[node name="Label" type="Label" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=920829993]
+[node name="MenuLabel" type="Label" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=920829993]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 48
 text = "Menu"
 
 [node name="HSeparator" type="HSeparator" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=1269670420]
 layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_udoo7")
 
-[node name="DisplayFPSLabel" type="Label" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HSeparator" unique_id=301356702]
-layout_mode = 0
-offset_top = 8.0
-offset_right = 220.0
-offset_bottom = 25.0
-theme_override_font_sizes/font_size = 12
+[node name="DisplayFPSLabel" type="Label" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=301356702]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
 text = "Display FPS"
 
-[node name="FPSCheckButton" type="CheckButton" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=1644065287]
-layout_mode = 2
+[node name="FPSCheckButton" type="CheckButton" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/DisplayFPSLabel" unique_id=1644065287]
+layout_mode = 0
+offset_left = 765.0
+offset_top = -21.0
+offset_right = 809.0
+offset_bottom = 3.0
+scale = Vector2(4, 4)
 size_flags_horizontal = 8
 focus_mode = 0
 
 [node name="HSeparator2" type="HSeparator" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=1629354105]
 layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_fur6u")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=1109911268]
 layout_mode = 2
@@ -154,11 +212,16 @@ alignment = 1
 [node name="SensitivityLabel" type="Label" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1751724632]
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 48
 text = "Sensitivity"
 
-[node name="SpinBox" type="SpinBox" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1802166324]
-layout_mode = 2
+[node name="SpinBox" type="SpinBox" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel" unique_id=1802166324]
+layout_mode = 0
+offset_left = 740.0
+offset_top = -12.0
+offset_right = 838.0
+offset_bottom = 37.0
+scale = Vector2(1.6, 1.6)
 size_flags_horizontal = 8
 min_value = 0.1
 max_value = 5.0
@@ -167,28 +230,30 @@ value = 0.7999999999999999
 
 [node name="HSeparator3" type="HSeparator" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=1451783717]
 layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_7g1oc")
 
 [node name="QuitButton" type="Button" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=168483982]
 layout_mode = 2
 size_flags_horizontal = 4
 focus_mode = 0
-theme_override_font_sizes/font_size = 12
+theme_override_font_sizes/font_size = 48
 text = "Quit"
 
 [node name="FPSLabel" type="Label" parent="UI" unique_id=283481881]
-offset_right = 64.0
-offset_bottom = 23.0
-theme_override_font_sizes/font_size = 16
+texture_filter = 1
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 175.0
+offset_bottom = 45.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 32
 text = "FPS: 100"
 script = ExtResource("3_fur6u")
-metadata/_edit_use_anchors_ = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1490088930]
 stream = ExtResource("4_ckpq3")
 autoplay = true
-
-[node name="Camera" parent="." unique_id=701550866 instance=ExtResource("5_ayv6d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1164708, 0)
 
 [node name="Terrain" type="MeshInstance3D" parent="." unique_id=1600635690]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28243256, -0.97055817, 0.931749)
@@ -206,13 +271,11 @@ rock_scene_1 = ExtResource("15_akuer")
 rock_scene_2 = ExtResource("16_gtuhl")
 grass_patch_scene_1 = ExtResource("14_ckpq3")
 
-[node name="Terrain_col" type="StaticBody3D" parent="Terrain" unique_id=1505169510]
+[node name="Terrain_col" type="StaticBody3D" parent="Terrain" unique_id=1156463100]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Terrain_col" unique_id=1538834926]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Terrain_col" unique_id=1398051870]
 shape = SubResource("ConcavePolygonShape3D_fur6u")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="." unique_id=1668393417]
-
-[connection signal="toggled" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/FPSCheckButton" to="UI/Menu" method="_on_fps_check_button_toggled"]
-[connection signal="value_changed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SpinBox" to="UI/Menu" method="_on_spin_box_value_changed"]
+[connection signal="toggled" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/DisplayFPSLabel/FPSCheckButton" to="UI/Menu" method="_on_fps_check_button_toggled"]
+[connection signal="value_changed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel/SpinBox" to="UI/Menu" method="_on_spin_box_value_changed"]
 [connection signal="pressed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/QuitButton" to="UI/Menu" method="_on_quit_button_pressed"]

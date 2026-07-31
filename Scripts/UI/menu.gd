@@ -8,12 +8,14 @@ func _ready() -> void:
 	panel_container.visible = false
 	fps_label.visible = false
 	
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("menu"):
 		if panel_container.visible == true:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+			mouse_filter = Control.MOUSE_FILTER_IGNORE
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+			mouse_filter = Control.MOUSE_FILTER_STOP
 		panel_container.visible = not panel_container.visible
 
 

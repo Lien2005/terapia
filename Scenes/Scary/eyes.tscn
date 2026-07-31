@@ -17,7 +17,7 @@ autostart = true
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1012931153]
 stream = ExtResource("3_ded6g")
-volume_db = 5.0
+volume_db = 10.0
 autoplay = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

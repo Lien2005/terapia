@@ -41,8 +41,26 @@ use_collision = true
 size = Vector3(100, 1, 100)
 material = SubResource("StandardMaterial3D_0bs4g")
 
-[node name="Camera" parent="." unique_id=701550866 instance=ExtResource("2_qc4db")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7616775, -3.935289)
-
 [node name="GreenTree1" parent="." unique_id=1963311074 instance=ExtResource("3_qc4db")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.72968674, 0.50000095, -12.935801)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1134211519]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer" unique_id=1952790832]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+stretch_shrink = 4
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/SubViewportContainer" unique_id=433278567]
+handle_input_locally = false
+scaling_3d_mode = 5
+canvas_item_default_texture_filter = 0
+size = Vector2i(480, 270)
+render_target_update_mode = 4
+
+[node name="Camera" parent="CanvasLayer/SubViewportContainer/SubViewport" unique_id=701550866 instance=ExtResource("2_qc4db")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1164708, 0)

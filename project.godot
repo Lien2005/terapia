@@ -15,6 +15,10 @@ run/main_scene="uid://bf1er2k4yrs72"
 config/features=PackedStringArray("4.7", "Forward Plus")
 boot_splash/show_image=false
 boot_splash/use_filter=false
+config/size/window_height_override=540
+config/size/window_width_override=960
+config/size/viewport_height=270
+config/size/viewport_width=480
 
 [audio]
 
@@ -26,16 +30,19 @@ Global="*uid://cv8pwyxfxb37l"
 
 [display]
 
-window/size/viewport_width=480
-window/size/viewport_height=270
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/size/mode=3
 window/size/initial_position=Vector2i(0, 348)
-window/size/window_width_override=960
-window/size/window_height_override=540
 window/energy_saving/keep_screen_on=false
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 window/vsync/vsync_mode=0
+
+[gui]
+
+theme/default_font_antialiasing=0
+theme/custom_font="uid://m5j5n65pekgk"
 
 [input]
 
