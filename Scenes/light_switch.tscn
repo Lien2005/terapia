@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://vybbhcxwjjw"]
+
+[ext_resource type="Script" uid="uid://bsggv615bapq7" path="res://Scripts/light_switch.gd" id="1_06m6k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mjrfg"]
+size = Vector3(0.3, 0.5, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mjrfg"]
+stencil_flags = 2
+stencil_color = Color(0.88, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0bs4g"]
+material = SubResource("StandardMaterial3D_mjrfg")
+size = Vector3(0.3, 0.5, 0.1)
+
+[node name="LightSwitch" type="StaticBody3D" unique_id=1807953609 node_paths=PackedStringArray("mesh") groups=["Interactables"]]
+collision_layer = 3
+script = ExtResource("1_06m6k")
+mesh = NodePath("MeshInstance3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1178284309]
+shape = SubResource("BoxShape3D_mjrfg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1355649429]
+mesh = SubResource("BoxMesh_0bs4g")

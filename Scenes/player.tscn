@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c23bgi0tax2pw"]
 
-[ext_resource type="Script" uid="uid://ds3r2utio6we4" path="res://Scripts/camera.gd" id="1_375tr"]
+[ext_resource type="Script" uid="uid://ds3r2utio6we4" path="res://Scripts/player.gd" id="1_8erm5"]
 [ext_resource type="AudioStream" uid="uid://bsu3k76bc4081" path="res://Audio/flashlight.mp3" id="2_f1cf7"]
 [ext_resource type="PackedScene" uid="uid://cvq7rrb52wjbj" path="res://Scenes/Scary/eyes.tscn" id="2_pqp4w"]
 [ext_resource type="Script" uid="uid://xfcurdb61oga" path="res://Scripts/flashlight.gd" id="3_7o1f6"]
@@ -24,11 +24,12 @@ stream_0/stream = ExtResource("3_pqp4w")
 stream_1/stream = ExtResource("4_7o1f6")
 stream_2/stream = ExtResource("5_c66t7")
 
-[node name="Camera" type="CharacterBody3D" unique_id=701550866 node_paths=PackedStringArray("flashlight", "footstep_stream_player_3d")]
-script = ExtResource("1_375tr")
+[node name="Player" type="CharacterBody3D" unique_id=701550866 node_paths=PackedStringArray("flashlight", "footstep_stream_player_3d", "interaction_ray_cast_3d")]
+script = ExtResource("1_8erm5")
 flashlight = NodePath("Head/Camera3D/Flashlight")
 footstep_stream_player_3d = NodePath("FootstepStreamPlayer3D")
 eyes = ExtResource("2_pqp4w")
+interaction_ray_cast_3d = NodePath("Head/Camera3D/InteractionRayCast3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1716794259]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -38,6 +39,7 @@ shape = SubResource("CapsuleShape3D_0bs4g")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=275447327]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44773936, 0)
 current = true
 
 [node name="Flashlight" type="SpotLight3D" parent="Head/Camera3D" unique_id=972214928 node_paths=PackedStringArray("progress_bar", "flashlight_stream_player_3d")]
@@ -53,6 +55,11 @@ spot_angle_attenuation = 3.0
 script = ExtResource("3_7o1f6")
 progress_bar = NodePath("../../../ProgressBar")
 flashlight_stream_player_3d = NodePath("../../../FlashlightStreamPlayer3D")
+
+[node name="InteractionRayCast3D" type="RayCast3D" parent="Head/Camera3D" unique_id=267122978]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+target_position = Vector3(0, -2, 0)
+collision_mask = 2
 
 [node name="EyePath" type="Path3D" parent="Head" unique_id=2069339310]
 transform = Transform3D(-1.7331566e-07, 0, -3.965, 0, 3.965, 0, 3.965, 0, -1.7331566e-07, -9.059947, 1, -16.517)
@@ -78,6 +85,7 @@ autostart = true
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=102147079]
 visible = false
+texture_filter = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -88,6 +96,7 @@ offset_top = -27.0
 offset_right = 77.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_font_sizes/font_size = 32
 max_value = 100000.0
 step = 1.0
 value = 100000.0

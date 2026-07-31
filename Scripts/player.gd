@@ -1,8 +1,14 @@
 extends CharacterBody3D
 
+class_name Player
+
+@onready var head = $Head
+@onready var camera = $Head/Camera3D
+
 @export var flashlight: SpotLight3D
 @export var footstep_stream_player_3d: AudioStreamPlayer3D
 @export var eyes: PackedScene
+@export var interaction_ray_cast_3d: RayCast3D
 
 var speed: float
 var walk_speed: float = 3.0
@@ -24,8 +30,7 @@ const fov_change: float = 1.5
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity: float = 9.8
 
-@onready var head = $Head
-@onready var camera = $Head/Camera3D
+var focused_object: Interactable
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -36,6 +41,9 @@ func _unhandled_input(event):
 		head.rotate_y(-event.relative.x * sensitivity)
 		camera.rotate_x(-event.relative.y * sensitivity)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-70), deg_to_rad(70))
+	if (event.is_action_pressed("interact")):
+		if (focused_object != null):
+			focused_object.interact(self)
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -82,6 +90,20 @@ func _physics_process(delta):
 		footstep_stream_player_3d.play()
 	footstep_landed = is_on_floor()
 
+func _process(_delta: float) -> void:
+	if interaction_ray_cast_3d.is_colliding():
+		var hit_object = interaction_ray_cast_3d.get_collider()
+		if (focused_object != hit_object):
+			focused_object = hit_object
+			focused_object.toggle_outline()
+			Messenger.SHOW_INTERACT_MESSAGE.emit(focused_object.
+			get_interact_message(self))
+	else:
+		if(focused_object != null):
+			focused_object.toggle_outline()
+			Messenger.CLEAR_INTERACT_MESSAGE.emit()
+			focused_object = null
+
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
 	pos.y = sin(time * bob_freq) * bob_amp
@@ -97,7 +119,6 @@ func _headbob(time) -> Vector3:
 
 func _change_sens(value) -> void:
 	sensitivity = value
-
 
 func _on_timer_timeout() -> void:
 	if flashlight.visible:
