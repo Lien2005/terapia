@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ck3pjhridrjvy"]
+
+[ext_resource type="Texture2D" uid="uid://bkt2de5ghc3mn" path="res://Assets/Nature/tree_pack_1.1/tree_pack_1.1/textures/bush04.png" id="1_0it0b"]
+
+[resource]
+resource_name = "bush04"
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.9063318, 0.9063318, 0.9063318, 1)
+albedo_texture = ExtResource("1_0it0b")
+texture_filter = 2
+texture_repeat = false

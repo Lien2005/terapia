@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dcue80u28ggbq"]
 
-[ext_resource type="Texture2D" uid="uid://b5ru32t5qtwp4" path="res://Assets/TerrainTexture/2K/Poliigon_GrassPatchyGround_4585_BaseColor.jpg" id="1_8od7v"]
+[ext_resource type="Texture2D" uid="uid://b5ru32t5qtwp4" path="res://Assets/Nature/TerrainTexture/2K/Poliigon_GrassPatchyGround_4585_BaseColor.jpg" id="1_8od7v"]
 [ext_resource type="PackedScene" uid="uid://c23bgi0tax2pw" path="res://Scenes/player.tscn" id="2_qc4db"]
 [ext_resource type="PackedScene" uid="uid://d22bh2e8oivbx" path="res://Scenes/Nature/Trees/green_tree_1.tscn" id="3_qc4db"]
 

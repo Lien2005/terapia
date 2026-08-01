@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://doa27x8wh8wkl"]
+
+[ext_resource type="Script" uid="uid://bvtthdwl0keeh" path="res://Scripts/light.gd" id="1_hsho4"]
+[ext_resource type="ArrayMesh" uid="uid://k228rb78vrks" path="res://Meshes/light.res" id="1_wh1uv"]
+[ext_resource type="Material" uid="uid://ss77ipqmedaa" path="res://Meshes/light_mat.res" id="2_a6465"]
+[ext_resource type="ArrayMesh" uid="uid://ts2cyn7qtooq" path="res://Meshes/lightbulb.res" id="2_hsho4"]
+
+[node name="Light" type="Node3D" unique_id=1564541268]
+script = ExtResource("1_hsho4")
+lightbulb_mat = ExtResource("2_a6465")
+
+[node name="Light" type="MeshInstance3D" parent="." unique_id=1716491631]
+cast_shadow = 0
+mesh = ExtResource("1_wh1uv")
+
+[node name="Lightbulb" type="MeshInstance3D" parent="Light" unique_id=1346988738]
+mesh = ExtResource("2_hsho4")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Light/Lightbulb" unique_id=1034560017]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7051852, 0)
+visible = false
+light_color = Color(1, 0.9041667, 0.75, 1)
