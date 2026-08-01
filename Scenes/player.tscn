@@ -39,13 +39,13 @@ shape = SubResource("CapsuleShape3D_0bs4g")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=275447327]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44773936, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45, 0)
 current = true
 
 [node name="Flashlight" type="SpotLight3D" parent="Head/Camera3D" unique_id=972214928 node_paths=PackedStringArray("progress_bar", "flashlight_stream_player_3d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.3261063, -0.081768036)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.32599998, 0.45150995)
 light_color = Color(1, 0.96166664, 0.53999996, 1)
-light_energy = 12.0
+light_energy = 10.0
 light_indirect_energy = 2.0
 light_volumetric_fog_energy = 2.0
 spot_range = 100.0

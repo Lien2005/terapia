@@ -13,8 +13,10 @@ class_name Player
 var speed: float
 var walk_speed: float = 3.0
 var sprint_speed: float = 6.0
+var crouch_speed: float = 2.0
 var jump_velocity: float = 4.8
 var sensitivity: float = Global.sensitivity
+var crouching: bool = false
 
 #bob variables
 var bob_freq: float = 2.4
@@ -48,16 +50,20 @@ func _unhandled_input(event):
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
 	# Handle Jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_velocity
-	
-	# Handle Sprint.
-	if Input.is_action_pressed("sprint"):
+		
+	#Handle sprint/crouch
+	if Input.is_action_pressed("crouch"):
+		speed = crouch_speed
+		crouching = true
+	elif Input.is_action_pressed("sprint"):
 		speed = sprint_speed
+		crouching = false
 	else:
 		speed = walk_speed
+		crouching = false
 
 	# Get the input direction and handle the movement/deceleration.
 	var input_dir = Input.get_vector("left", "right", "up", "down")
@@ -106,15 +112,20 @@ func _process(_delta: float) -> void:
 
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
+	
 	pos.y = sin(time * bob_freq) * bob_amp
 	pos.x = cos(time * bob_freq / 2) * bob_amp
-	
-	var footstep_threshold = -bob_amp + 0.04
+	if not crouching:
+		pos.y += -0.45
+	else:
+		pos.y += -0.70
+	var footstep_threshold = -bob_amp + 0.04 - 0.45
 	if pos.y > footstep_threshold:
 		footstep_can_play = true
 	elif pos.y < footstep_threshold and footstep_can_play:
 		footstep_can_play = false
 		footstep_stream_player_3d.play()
+
 	return pos
 
 func _change_sens(value) -> void:

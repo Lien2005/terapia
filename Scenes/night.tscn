@@ -303,9 +303,9 @@ rock_scene_1 = ExtResource("15_akuer")
 rock_scene_2 = ExtResource("16_gtuhl")
 grass_patch_scene_1 = ExtResource("14_ckpq3")
 
-[node name="Terrain_col" type="StaticBody3D" parent="Terrain" unique_id=1042523023]
+[node name="Terrain_col" type="StaticBody3D" parent="Terrain" unique_id=296045977]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Terrain_col" unique_id=2008034429]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Terrain_col" unique_id=244158332]
 shape = SubResource("ConcavePolygonShape3D_ayv6d")
 
 [node name="LightSwitch" parent="." unique_id=1807953609 instance=ExtResource("18_fur6u")]

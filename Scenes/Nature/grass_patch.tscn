@@ -6,5 +6,5 @@
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 cast_shadow = 0
 lod_bias = 0.001
-visibility_range_end = 15.0
+visibility_range_end = 30.0
 mesh = ExtResource("1_s6vot")
