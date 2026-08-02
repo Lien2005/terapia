@@ -2,7 +2,8 @@ extends Node
 
 signal change_sens(value)
 
-var sensitivity: float = clamp(0.008, 0.001, 0.050)
+var start_sens: float = 0.01
+var sensitivity: float = clamp(start_sens, 0.001, 0.050)
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

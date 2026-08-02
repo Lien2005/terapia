@@ -39,7 +39,6 @@ fog_depth_end = 160.0
 volumetric_fog_density = 0.01
 volumetric_fog_albedo = Color(0.31, 0.31, 0.31, 1)
 adjustment_enabled = true
-adjustment_brightness = 1.2
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_udoo7"]
 content_margin_left = 4.0
@@ -49,7 +48,10 @@ content_margin_bottom = 0.0
 color = Color(0.5, 0.5, 0.5, 1)
 thickness = 4
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_fur6u"]
+[sub_resource type="Theme" id="Theme_7g1oc"]
+default_font_size = 32
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_7g1oc"]
 content_margin_left = 4.0
 content_margin_top = 0.0
 content_margin_right = 4.0
@@ -91,14 +93,6 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 expand_margin_top = 4.0
 expand_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_7g1oc"]
-content_margin_left = 4.0
-content_margin_top = 0.0
-content_margin_right = 4.0
-content_margin_bottom = 0.0
-color = Color(0.5, 0.5, 0.5, 1)
-thickness = 4
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_fur6u"]
 _surfaces = [{
@@ -196,7 +190,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("5_7g1oc")
 
-[node name="Menu" type="Control" parent="UI" unique_id=642241204 node_paths=PackedStringArray("panel_container", "quit_button", "fps_label", "sensitivity_slider", "sensitivity_spin_box")]
+[node name="Menu" type="Control" parent="UI" unique_id=642241204 node_paths=PackedStringArray("panel_container", "quit_button", "fps_label", "sensitivity_slider", "sensitivity_spin_box", "world_environment", "brightness_slider", "contrast_slider", "fps_custom_spinbox")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -208,18 +202,22 @@ script = ExtResource("2_udoo7")
 panel_container = NodePath("PanelContainer")
 quit_button = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/QuitButton")
 fps_label = NodePath("../FPSLabel")
-sensitivity_slider = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivitySlider")
+sensitivity_slider = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel/SensitivitySlider")
 sensitivity_spin_box = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel/SensitivitySpinBox")
+world_environment = NodePath("../../WorldEnvironment")
+brightness_slider = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/BrightnessLabel/BrightnessSlider")
+contrast_slider = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/ContrastLabel/ContrastSlider")
+fps_custom_spinbox = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/LimitFPSLabel/FPSCustomSpinbox")
 
 [node name="PanelContainer" type="PanelContainer" parent="UI/Menu" unique_id=1832222838]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 12.000001
 anchor_bottom = 6.7500005
-offset_left = 480.0
-offset_top = 270.0
-offset_right = -21600.002
-offset_bottom = -6480.0005
+offset_left = 260.0
+offset_top = 90.0
+offset_right = -21380.002
+offset_bottom = -6300.0005
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -230,13 +228,14 @@ mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/Menu/PanelContainer/Panel" unique_id=385591796]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 14
+anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 0.5
 offset_left = 20.0
-offset_top = 20.0
+offset_top = -383.5
 offset_right = -20.0
-offset_bottom = -20.0
+offset_bottom = 383.5
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -261,17 +260,66 @@ text = "Display FPS"
 
 [node name="FPSCheckButton" type="CheckButton" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/DisplayFPSLabel" unique_id=1644065287]
 layout_mode = 0
-offset_left = 765.0
+offset_left = 1213.0
 offset_top = -21.0
-offset_right = 809.0
+offset_right = 1257.0
 offset_bottom = 3.0
 scale = Vector2(4, 4)
 size_flags_horizontal = 8
 focus_mode = 0
 
-[node name="HSeparator2" type="HSeparator" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=1629354105]
+[node name="LimitFPSLabel" type="Label" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=1740137381]
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_fur6u")
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 48
+text = "Limit FPS"
+
+[node name="FPSOptionButton" type="OptionButton" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/LimitFPSLabel" unique_id=1088509837]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 747.0
+offset_top = -24.5
+offset_right = 1072.0
+offset_bottom = 32.5
+grow_horizontal = 0
+grow_vertical = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 48
+selected = 0
+item_count = 6
+popup/item_0/text = "Unlimited"
+popup/item_0/id = 0
+popup/item_1/text = "60"
+popup/item_1/id = 1
+popup/item_2/text = "120"
+popup/item_2/id = 2
+popup/item_3/text = "144"
+popup/item_3/id = 3
+popup/item_4/text = "240"
+popup/item_4/id = 4
+popup/item_5/text = "Custom"
+popup/item_5/id = 5
+
+[node name="FPSCustomSpinbox" type="SpinBox" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/LimitFPSLabel" unique_id=209219023]
+visible = false
+layout_mode = 0
+offset_left = 846.0
+offset_right = 1016.0
+offset_bottom = 49.0
+size_flags_horizontal = 8
+theme = SubResource("Theme_7g1oc")
+min_value = 1.0
+max_value = 9999.0
+value = 60.0
+
+[node name="HSeparator3" type="HSeparator" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=1451783717]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_7g1oc")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=1109911268]
 layout_mode = 2
@@ -284,34 +332,99 @@ size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 48
 text = "Sensitivity"
 
-[node name="SensitivitySpinBox" type="SpinBox" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel" unique_id=1802166324]
+[node name="SensitivityResetButton" type="Button" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel" unique_id=591870655]
 layout_mode = 0
-offset_left = 740.0
-offset_top = -12.0
-offset_right = 838.0
-offset_bottom = 37.0
-scale = Vector2(1.6, 1.6)
-size_flags_horizontal = 8
-min_value = 0.1
-max_value = 5.0
-step = 0.1
-value = 0.7999999999999999
+offset_left = 516.0
+offset_right = 673.0
+offset_bottom = 57.0
+theme_override_font_sizes/font_size = 48
+text = "Reset"
 
-[node name="SensitivitySlider" type="HSlider" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1637737926]
+[node name="SensitivitySlider" type="HSlider" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel" unique_id=1637737926]
 custom_minimum_size = Vector2(400, 48)
-layout_mode = 2
+layout_mode = 0
+offset_left = 688.0
+offset_right = 1088.0
+offset_bottom = 49.0
 size_flags_vertical = 1
+focus_mode = 0
 theme_override_styles/slider = SubResource("StyleBoxFlat_fur6u")
 theme_override_styles/grabber_area = SubResource("StyleBoxFlat_7g1oc")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_ayv6d")
 min_value = 0.1
 max_value = 5.0
 step = 0.1
-value = 0.7999999999999999
+value = 1.0
 
-[node name="HSeparator3" type="HSeparator" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=1451783717]
+[node name="SensitivitySpinBox" type="SpinBox" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel" unique_id=1802166324]
+layout_mode = 0
+offset_left = 1191.0
+offset_right = 1361.0
+offset_bottom = 49.0
+size_flags_horizontal = 8
+theme = SubResource("Theme_7g1oc")
+min_value = 0.1
+max_value = 5.0
+step = 0.1
+value = 1.0
+
+[node name="HSeparator4" type="HSeparator" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=2103998878]
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_7g1oc")
+theme_override_styles/separator = SubResource("StyleBoxLine_udoo7")
+
+[node name="BrightnessLabel" type="Label" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=419814572]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Brightness"
+
+[node name="BrightnessResetButton" type="Button" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/BrightnessLabel" unique_id=863553549]
+layout_mode = 0
+offset_left = 753.0
+offset_right = 910.0
+offset_bottom = 57.0
+theme_override_font_sizes/font_size = 48
+text = "Reset"
+
+[node name="BrightnessSlider" type="HSlider" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/BrightnessLabel" unique_id=731876388]
+custom_minimum_size = Vector2(400, 48)
+layout_mode = 0
+offset_left = 958.0
+offset_right = 1358.0
+offset_bottom = 48.0
+focus_mode = 0
+min_value = 0.8
+max_value = 1.2
+step = 0.01
+value = 1.0
+
+[node name="ContrastLabel" type="Label" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=2126457763]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Contrast"
+
+[node name="ContrastResetButton" type="Button" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/ContrastLabel" unique_id=66599230]
+layout_mode = 0
+offset_left = 753.0
+offset_right = 910.0
+offset_bottom = 57.0
+theme_override_font_sizes/font_size = 48
+text = "Reset"
+
+[node name="ContrastSlider" type="HSlider" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/ContrastLabel" unique_id=2071566231]
+custom_minimum_size = Vector2(400, 48)
+layout_mode = 0
+offset_left = 958.0
+offset_right = 1358.0
+offset_bottom = 48.0
+focus_mode = 0
+min_value = 0.8
+max_value = 1.2
+step = 0.01
+value = 1.0
+
+[node name="HSeparator5" type="HSeparator" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=1305150712]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_udoo7")
 
 [node name="QuitButton" type="Button" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=168483982]
 layout_mode = 2
@@ -352,12 +465,19 @@ rock_scene_1 = ExtResource("15_akuer")
 rock_scene_2 = ExtResource("16_gtuhl")
 grass_patch_scene_1 = ExtResource("14_ckpq3")
 
-[node name="Terrain_col" type="StaticBody3D" parent="Terrain" unique_id=899000477]
+[node name="Terrain_col" type="StaticBody3D" parent="Terrain" unique_id=942496101]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Terrain_col" unique_id=1315731080]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Terrain_col" unique_id=1412428826]
 shape = SubResource("ConcavePolygonShape3D_7g1oc")
 
 [connection signal="toggled" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/DisplayFPSLabel/FPSCheckButton" to="UI/Menu" method="_on_fps_check_button_toggled"]
+[connection signal="item_selected" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/LimitFPSLabel/FPSOptionButton" to="UI/Menu" method="_on_fps_option_button_item_selected"]
+[connection signal="value_changed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/LimitFPSLabel/FPSCustomSpinbox" to="UI/Menu" method="_on_fps_custom_spinbox_value_changed"]
+[connection signal="pressed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel/SensitivityResetButton" to="UI/Menu" method="_on_sensitivity_reset_button_pressed"]
+[connection signal="value_changed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel/SensitivitySlider" to="UI/Menu" method="_on_sensitivity_slider_value_changed"]
 [connection signal="value_changed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel/SensitivitySpinBox" to="UI/Menu" method="_on_spin_box_value_changed"]
-[connection signal="value_changed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivitySlider" to="UI/Menu" method="_on_sensitivity_slider_value_changed"]
+[connection signal="pressed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/BrightnessLabel/BrightnessResetButton" to="UI/Menu" method="_on_brightness_reset_button_pressed"]
+[connection signal="value_changed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/BrightnessLabel/BrightnessSlider" to="UI/Menu" method="_on_brightness_slider_value_changed"]
+[connection signal="pressed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/ContrastLabel/ContrastResetButton" to="UI/Menu" method="_on_contrast_reset_button_pressed"]
+[connection signal="value_changed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/ContrastLabel/ContrastSlider" to="UI/Menu" method="_on_contrast_slider_value_changed"]
 [connection signal="pressed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/QuitButton" to="UI/Menu" method="_on_quit_button_pressed"]
