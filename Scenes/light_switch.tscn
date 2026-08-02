@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://vybbhcxwjjw"]
 
 [ext_resource type="Script" uid="uid://bsggv615bapq7" path="res://Scripts/light_switch.gd" id="1_06m6k"]
-[ext_resource type="ArrayMesh" uid="uid://cufpvhebr12lc" path="res://Meshes/lightswitch.res" id="2_ysq76"]
-[ext_resource type="ArrayMesh" uid="uid://fd3taxu5gpc3" path="res://Meshes/switch.res" id="3_2qx2t"]
+[ext_resource type="ArrayMesh" uid="uid://c5vsjmaknm7hp" path="res://Meshes/lightswitch.res" id="2_ysq76"]
+[ext_resource type="ArrayMesh" uid="uid://cblvbobdwyta7" path="res://Meshes/switch.res" id="3_2qx2t"]
 [ext_resource type="AudioStream" uid="uid://bsu3k76bc4081" path="res://Audio/flashlight.mp3" id="4_t4uef"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mjrfg"]

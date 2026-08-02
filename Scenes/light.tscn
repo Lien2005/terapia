@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://bvtthdwl0keeh" path="res://Scripts/light.gd" id="1_hsho4"]
 [ext_resource type="ArrayMesh" uid="uid://k228rb78vrks" path="res://Meshes/light.res" id="1_wh1uv"]
 [ext_resource type="Material" uid="uid://ss77ipqmedaa" path="res://Meshes/light_mat.res" id="2_a6465"]
-[ext_resource type="ArrayMesh" uid="uid://ts2cyn7qtooq" path="res://Meshes/lightbulb.res" id="2_hsho4"]
+[ext_resource type="ArrayMesh" uid="uid://ci8v7fg8hrmwe" path="res://Meshes/lightbulb.res" id="2_hsho4"]
 
 [node name="Light" type="Node3D" unique_id=1564541268]
 script = ExtResource("1_hsho4")

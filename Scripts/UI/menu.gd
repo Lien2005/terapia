@@ -3,6 +3,8 @@ extends Control
 @export var panel_container: PanelContainer
 @export var quit_button: Button
 @export var fps_label: Label
+@export var sensitivity_slider: HSlider
+@export var sensitivity_spin_box: SpinBox
 
 func _ready() -> void:
 	panel_container.visible = false
@@ -24,9 +26,14 @@ func _on_quit_button_pressed() -> void:
 
 func _on_spin_box_value_changed(value: float) -> void:
 	Global.sens_changed(value / 100)
-
+	sensitivity_slider.value = value
+	
 func _on_fps_check_button_toggled(toggled_on: bool) -> void:
 	if toggled_on:
 		fps_label.visible = true
 	else:
 		fps_label.visible = false
+
+func _on_sensitivity_slider_value_changed(value: float) -> void:
+	Global.sens_changed(value / 100)
+	sensitivity_spin_box.value = value

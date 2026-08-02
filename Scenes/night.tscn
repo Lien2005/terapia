@@ -29,12 +29,13 @@ sky = SubResource("Sky_bo1nx")
 ambient_light_color = Color(0.17, 0.17, 0.17, 1)
 tonemap_mode = 3
 tonemap_exposure = 0.6
+fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.09903333, 0.1, 0.042000003, 1)
-fog_density = 0.0247
-fog_depth_curve = 0.05
+fog_light_color = Color(0.14, 0.14, 0.14, 1)
+fog_density = 1.0
+fog_sky_affect = 0.7
 fog_depth_begin = 0.0
-fog_depth_end = 40.0
+fog_depth_end = 160.0
 volumetric_fog_density = 0.01
 volumetric_fog_albedo = Color(0.31, 0.31, 0.31, 1)
 adjustment_enabled = true
@@ -55,6 +56,41 @@ content_margin_right = 4.0
 content_margin_bottom = 0.0
 color = Color(0.5, 0.5, 0.5, 1)
 thickness = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fur6u"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_top = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7g1oc"]
+bg_color = Color(1, 1, 1, 0.4)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_top = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ayv6d"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_top = 4.0
+expand_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_7g1oc"]
 content_margin_left = 4.0
@@ -160,7 +196,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("5_7g1oc")
 
-[node name="Menu" type="Control" parent="UI" unique_id=642241204 node_paths=PackedStringArray("panel_container", "quit_button", "fps_label")]
+[node name="Menu" type="Control" parent="UI" unique_id=642241204 node_paths=PackedStringArray("panel_container", "quit_button", "fps_label", "sensitivity_slider", "sensitivity_spin_box")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -172,6 +208,8 @@ script = ExtResource("2_udoo7")
 panel_container = NodePath("PanelContainer")
 quit_button = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/QuitButton")
 fps_label = NodePath("../FPSLabel")
+sensitivity_slider = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivitySlider")
+sensitivity_spin_box = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel/SensitivitySpinBox")
 
 [node name="PanelContainer" type="PanelContainer" parent="UI/Menu" unique_id=1832222838]
 layout_mode = 1
@@ -246,7 +284,7 @@ size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 48
 text = "Sensitivity"
 
-[node name="SpinBox" type="SpinBox" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel" unique_id=1802166324]
+[node name="SensitivitySpinBox" type="SpinBox" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel" unique_id=1802166324]
 layout_mode = 0
 offset_left = 740.0
 offset_top = -12.0
@@ -254,6 +292,18 @@ offset_right = 838.0
 offset_bottom = 37.0
 scale = Vector2(1.6, 1.6)
 size_flags_horizontal = 8
+min_value = 0.1
+max_value = 5.0
+step = 0.1
+value = 0.7999999999999999
+
+[node name="SensitivitySlider" type="HSlider" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1637737926]
+custom_minimum_size = Vector2(400, 48)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/slider = SubResource("StyleBoxFlat_fur6u")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_7g1oc")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_ayv6d")
 min_value = 0.1
 max_value = 5.0
 step = 0.1
@@ -302,11 +352,12 @@ rock_scene_1 = ExtResource("15_akuer")
 rock_scene_2 = ExtResource("16_gtuhl")
 grass_patch_scene_1 = ExtResource("14_ckpq3")
 
-[node name="Terrain_col" type="StaticBody3D" parent="Terrain" unique_id=361385690]
+[node name="Terrain_col" type="StaticBody3D" parent="Terrain" unique_id=899000477]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Terrain_col" unique_id=2003831657]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Terrain_col" unique_id=1315731080]
 shape = SubResource("ConcavePolygonShape3D_7g1oc")
 
 [connection signal="toggled" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/DisplayFPSLabel/FPSCheckButton" to="UI/Menu" method="_on_fps_check_button_toggled"]
-[connection signal="value_changed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel/SpinBox" to="UI/Menu" method="_on_spin_box_value_changed"]
+[connection signal="value_changed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel/SensitivitySpinBox" to="UI/Menu" method="_on_spin_box_value_changed"]
+[connection signal="value_changed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivitySlider" to="UI/Menu" method="_on_sensitivity_slider_value_changed"]
 [connection signal="pressed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/QuitButton" to="UI/Menu" method="_on_quit_button_pressed"]
