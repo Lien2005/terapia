@@ -13,7 +13,7 @@ _source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\">
 "
 base_scale = 2.0
 
-[node name="Menu" type="Control" unique_id=1794024812 node_paths=PackedStringArray("quit_button", "sensitivity_slider", "sensitivity_spin_box", "brightness_slider", "contrast_slider", "fps_custom_spinbox", "audio_h_slider", "fps_check_box")]
+[node name="Menu" type="Control" unique_id=1794024812 node_paths=PackedStringArray("quit_button", "sensitivity_slider", "sensitivity_spin_box", "brightness_slider", "contrast_slider", "fps_custom_spinbox", "audio_h_slider", "fps_check_box", "screen_option_button", "fps_option_button", "resolution_option_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,7 +23,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("1_xhh6f")
 script = ExtResource("2_cayip")
-quit_button = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/QuitButton")
+quit_button = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/QuitDButton")
 sensitivity_slider = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/SensitivityHBoxContainer/SensitivitySlider")
 sensitivity_spin_box = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/SensitivityHBoxContainer/SensitivitySpinBox")
 brightness_slider = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/VisualsVBoxContainer/HBoxContainer/BrightnessSlider")
@@ -31,6 +31,9 @@ contrast_slider = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/V
 fps_custom_spinbox = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer/FPSCustomSpinbox")
 audio_h_slider = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/VolumeHBoxContainer2/AudioHSlider")
 fps_check_box = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer2/FPSCheckBox")
+screen_option_button = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer3/ScreenOptionButton")
+fps_option_button = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer/FPSOptionButton")
+resolution_option_button = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer4/ResolutionOptionButton")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1234268818]
 layout_mode = 1
@@ -52,9 +55,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
+offset_left = 40.0
 offset_top = 20.0
-offset_right = -20.0
+offset_right = -40.0
 offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -63,7 +66,7 @@ theme = ExtResource("1_xhh6f")
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Panel/MarginContainer" unique_id=874256644]
 layout_mode = 2
 theme = ExtResource("1_xhh6f")
-theme_override_constants/separation = 40
+theme_override_constants/separation = 24
 
 [node name="MenuLabel" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=971955720]
 layout_mode = 2
@@ -79,6 +82,76 @@ theme = ExtResource("1_xhh6f")
 [node name="FPSVBoxContainer" type="VBoxContainer" parent="PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=1193832526]
 layout_mode = 2
 theme_override_constants/separation = 40
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer" unique_id=992522681]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="ScreenModeLabel" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer3" unique_id=1558122018]
+layout_mode = 2
+theme = ExtResource("1_xhh6f")
+theme_override_font_sizes/font_size = 48
+text = "Screen mode"
+
+[node name="ScreenOptionButton" type="OptionButton" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer3" unique_id=1201141196]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_xhh6f")
+theme_override_font_sizes/font_size = 48
+alignment = 1
+selected = 0
+fit_to_longest_item = false
+item_count = 3
+popup/item_0/text = "Windowed"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen"
+popup/item_1/id = 1
+popup/item_2/text = "Exclusive Fullscreen"
+popup/item_2/id = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer" unique_id=706508043]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Label" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer4" unique_id=2109591031]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Windowed resolution"
+
+[node name="ResolutionOptionButton" type="OptionButton" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer4" unique_id=1358620177]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_xhh6f")
+theme_override_font_sizes/font_size = 48
+alignment = 1
+selected = 6
+item_count = 13
+popup/item_0/text = "3840x2160"
+popup/item_0/id = 0
+popup/item_1/text = "3440x1440"
+popup/item_1/id = 1
+popup/item_2/text = "2560x1600"
+popup/item_2/id = 2
+popup/item_3/text = "2560x1440"
+popup/item_3/id = 3
+popup/item_4/text = "2560x1080"
+popup/item_4/id = 4
+popup/item_5/text = "1920x1200"
+popup/item_5/id = 5
+popup/item_6/text = "1920x1080"
+popup/item_6/id = 6
+popup/item_7/text = "1600x900"
+popup/item_7/id = 7
+popup/item_8/text = "1440x900"
+popup/item_8/id = 8
+popup/item_9/text = "1366x768"
+popup/item_9/id = 9
+popup/item_10/text = "1280x800"
+popup/item_10/id = 10
+popup/item_11/text = "1280x720"
+popup/item_11/id = 11
+popup/item_12/text = "1024x768"
+popup/item_12/id = 12
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer" unique_id=667137072]
 layout_mode = 2
@@ -118,7 +191,8 @@ layout_mode = 2
 focus_mode = 0
 theme = ExtResource("1_xhh6f")
 theme_override_font_sizes/font_size = 48
-selected = 0
+alignment = 1
+selected = 4
 item_count = 6
 popup/item_0/text = "Unlimited"
 popup/item_0/id = 0
@@ -140,7 +214,7 @@ size_flags_horizontal = 8
 theme = ExtResource("1_xhh6f")
 min_value = 1.0
 max_value = 9999.0
-value = 60.0
+value = 1.0
 
 [node name="HSeparator3" type="HSeparator" parent="PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=799866471]
 layout_mode = 2
@@ -162,6 +236,7 @@ text = "Sensitivity"
 
 [node name="SensitivityResetButton" type="Button" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/SensitivityHBoxContainer" unique_id=599654203]
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_xhh6f")
 theme_override_font_sizes/font_size = 48
 text = "Reset"
@@ -206,6 +281,7 @@ text = "Brightness"
 
 [node name="BrightnessResetButton" type="Button" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/VisualsVBoxContainer/HBoxContainer" unique_id=1547681869]
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_xhh6f")
 theme_override_font_sizes/font_size = 48
 text = "Reset"
@@ -232,6 +308,7 @@ text = "Contrast"
 
 [node name="ContrastResetButton" type="Button" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/VisualsVBoxContainer/HBoxContainer2" unique_id=1916279944]
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_xhh6f")
 theme_override_font_sizes/font_size = 48
 text = "Reset"
@@ -262,6 +339,7 @@ text = "Master volume"
 
 [node name="AudioResetButton" type="Button" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/VolumeHBoxContainer2" unique_id=1156315479]
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_xhh6f")
 theme_override_font_sizes/font_size = 48
 text = "Reset"
@@ -269,6 +347,7 @@ text = "Reset"
 [node name="AudioHSlider" type="HSlider" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/VolumeHBoxContainer2" unique_id=570977655]
 custom_minimum_size = Vector2(400, 48)
 layout_mode = 2
+focus_mode = 0
 theme = ExtResource("1_xhh6f")
 max_value = 2.0
 step = 0.001
@@ -278,14 +357,27 @@ value = 1.0
 layout_mode = 2
 theme = ExtResource("1_xhh6f")
 
-[node name="QuitButton" type="Button" parent="PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=979634645]
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=1803502396]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 60
+
+[node name="QuitMMButton" type="Button" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1027602552]
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 48
+text = "Main menu"
+
+[node name="QuitDButton" type="Button" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=979634645]
 layout_mode = 2
 size_flags_horizontal = 4
 focus_mode = 0
 theme = ExtResource("1_xhh6f")
 theme_override_font_sizes/font_size = 48
-text = "Quit"
+text = "Quit to desktop"
 
+[connection signal="item_selected" from="PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer3/ScreenOptionButton" to="." method="_on_screen_option_button_item_selected"]
+[connection signal="item_selected" from="PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer4/ResolutionOptionButton" to="." method="_on_resolution_option_button_item_selected"]
 [connection signal="toggled" from="PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer2/FPSCheckBox" to="." method="_on_fps_check_box_toggled"]
 [connection signal="item_selected" from="PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer/FPSOptionButton" to="." method="_on_fps_option_button_item_selected"]
 [connection signal="value_changed" from="PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer/FPSCustomSpinbox" to="." method="_on_fps_custom_spinbox_value_changed"]
@@ -298,4 +390,5 @@ text = "Quit"
 [connection signal="value_changed" from="PanelContainer/Panel/MarginContainer/VBoxContainer/VisualsVBoxContainer/HBoxContainer2/ContrastSlider" to="." method="_on_contrast_slider_value_changed"]
 [connection signal="pressed" from="PanelContainer/Panel/MarginContainer/VBoxContainer/VolumeHBoxContainer2/AudioResetButton" to="." method="_on_audio_reset_button_pressed"]
 [connection signal="value_changed" from="PanelContainer/Panel/MarginContainer/VBoxContainer/VolumeHBoxContainer2/AudioHSlider" to="." method="_on_audio_h_slider_value_changed"]
-[connection signal="pressed" from="PanelContainer/Panel/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/QuitMMButton" to="." method="_on_quit_mm_button_pressed"]
+[connection signal="pressed" from="PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/QuitDButton" to="." method="_on_quit_d_button_pressed"]

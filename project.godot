@@ -13,6 +13,7 @@ config_version=5
 config/name="Terápia"
 run/main_scene="uid://bf1er2k4yrs72"
 config/features=PackedStringArray("4.7", "Forward Plus")
+run/max_fps=240
 boot_splash/show_image=false
 boot_splash/use_filter=false
 config/size/window_height_override=540
@@ -37,11 +38,8 @@ gdscript/warnings/unused_signal=0
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=4
-window/size/initial_position=Vector2i(0, 348)
 window/energy_saving/keep_screen_on=false
 window/stretch/mode="viewport"
-window/stretch/scale_mode="integer"
 window/vsync/vsync_mode=0
 
 [global_group]
