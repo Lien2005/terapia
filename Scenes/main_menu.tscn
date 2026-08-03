@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://f0vwaqfowv5n"]
+
+[ext_resource type="Script" uid="uid://c56o02tag5mw3" path="res://Scripts/main_menu.gd" id="1_28flt"]
+[ext_resource type="Theme" uid="uid://cgk44imj4kifc" path="res://Resources/menu_theme.tres" id="2_48xlc"]
+[ext_resource type="Material" uid="uid://d0igh80x0y8e0" path="res://Meshes/night_sky.tres" id="2_n45e2"]
+[ext_resource type="PackedScene" uid="uid://bo0w5oalygcam" path="res://Scenes/menu.tscn" id="3_1ehe0"]
+[ext_resource type="PackedScene" uid="uid://r2n6wxrf3mei" path="res://Scenes/fps_label.tscn" id="5_opfnp"]
+
+[sub_resource type="Sky" id="Sky_bo1nx"]
+sky_material = ExtResource("2_n45e2")
+
+[sub_resource type="Environment" id="Environment_cp0ys"]
+background_mode = 2
+background_color = Color(0.29, 0.29, 0.29, 1)
+sky = SubResource("Sky_bo1nx")
+ambient_light_color = Color(0.17, 0.17, 0.17, 1)
+tonemap_mode = 3
+tonemap_exposure = 0.6
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.14, 0.14, 0.14, 1)
+fog_density = 1.0
+fog_sky_affect = 0.7
+fog_depth_begin = 0.0
+fog_depth_end = 160.0
+volumetric_fog_density = 0.01
+volumetric_fog_albedo = Color(0.31, 0.31, 0.31, 1)
+adjustment_enabled = true
+
+[node name="MainMenu" type="Node3D" unique_id=1466610731 node_paths=PackedStringArray("menu")]
+script = ExtResource("1_28flt")
+menu = NodePath("MainMenuCanvasLayer/Menu")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1118514071]
+environment = SubResource("Environment_cp0ys")
+
+[node name="MainMenuCanvasLayer" type="CanvasLayer" parent="." unique_id=178001743]
+
+[node name="MainUI" type="Control" parent="MainMenuCanvasLayer" unique_id=2077452519]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="MainMenuCanvasLayer/MainUI" unique_id=2016144125]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuCanvasLayer/MainUI/CenterContainer" unique_id=1018407792]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="PlayButton" type="Button" parent="MainMenuCanvasLayer/MainUI/CenterContainer/VBoxContainer" unique_id=418009832]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_48xlc")
+theme_override_font_sizes/font_size = 64
+text = "Play"
+
+[node name="SettingsButton" type="Button" parent="MainMenuCanvasLayer/MainUI/CenterContainer/VBoxContainer" unique_id=1377537441]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_48xlc")
+theme_override_font_sizes/font_size = 64
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="MainMenuCanvasLayer/MainUI/CenterContainer/VBoxContainer" unique_id=1761063580]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("2_48xlc")
+theme_override_font_sizes/font_size = 64
+text = "Quit"
+
+[node name="FPSLabel" parent="MainMenuCanvasLayer" unique_id=423396973 instance=ExtResource("5_opfnp")]
+
+[node name="Menu" parent="MainMenuCanvasLayer" unique_id=1794024812 node_paths=PackedStringArray("fps_label", "world_environment") instance=ExtResource("3_1ehe0")]
+visible = false
+fps_label = NodePath("../FPSLabel")
+world_environment = NodePath("../../WorldEnvironment")
+
+[connection signal="pressed" from="MainMenuCanvasLayer/MainUI/CenterContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MainMenuCanvasLayer/MainUI/CenterContainer/VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="MainMenuCanvasLayer/MainUI/CenterContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,0 +1,301 @@
+[gd_scene format=3 uid="uid://bo0w5oalygcam"]
+
+[ext_resource type="Theme" uid="uid://cgk44imj4kifc" path="res://Resources/menu_theme.tres" id="1_xhh6f"]
+[ext_resource type="Script" uid="uid://ltakavpl7e1c" path="res://Scripts/UI/menu.gd" id="2_cayip"]
+
+[sub_resource type="DPITexture" id="DPITexture_7g1oc"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><rect width=\"14\" height=\"14\" x=\"1\" y=\"1\" fill=\"#fff\" fill-opacity=\".75\" rx=\"2.333\"/><path fill=\"#1a1a1a\" d=\"m11.5 3.75-5.6 5.6-1.7-1.7-1.5 1.5 3.2 3.2 7.1-7.1z\"/></svg>
+"
+base_scale = 2.0
+
+[sub_resource type="DPITexture" id="DPITexture_ayv6d"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><rect width=\"14\" height=\"14\" x=\"1\" y=\"1\" fill=\"#1a1a1a\" fill-opacity=\".5\" rx=\"2.333\"/></svg>
+"
+base_scale = 2.0
+
+[node name="Menu" type="Control" unique_id=1794024812 node_paths=PackedStringArray("quit_button", "sensitivity_slider", "sensitivity_spin_box", "brightness_slider", "contrast_slider", "fps_custom_spinbox", "audio_h_slider", "fps_check_box")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_xhh6f")
+script = ExtResource("2_cayip")
+quit_button = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/QuitButton")
+sensitivity_slider = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/SensitivityHBoxContainer/SensitivitySlider")
+sensitivity_spin_box = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/SensitivityHBoxContainer/SensitivitySpinBox")
+brightness_slider = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/VisualsVBoxContainer/HBoxContainer/BrightnessSlider")
+contrast_slider = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/VisualsVBoxContainer/HBoxContainer2/ContrastSlider")
+fps_custom_spinbox = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer/FPSCustomSpinbox")
+audio_h_slider = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/VolumeHBoxContainer2/AudioHSlider")
+fps_check_box = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer2/FPSCheckBox")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1234268818]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_xhh6f")
+
+[node name="Panel" type="Panel" parent="PanelContainer" unique_id=106779515]
+layout_mode = 2
+mouse_filter = 2
+theme = ExtResource("1_xhh6f")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer/Panel" unique_id=879356268]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_xhh6f")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/Panel/MarginContainer" unique_id=874256644]
+layout_mode = 2
+theme = ExtResource("1_xhh6f")
+theme_override_constants/separation = 40
+
+[node name="MenuLabel" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=971955720]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_xhh6f")
+theme_override_font_sizes/font_size = 64
+text = "Menu"
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=1630482209]
+layout_mode = 2
+theme = ExtResource("1_xhh6f")
+
+[node name="FPSVBoxContainer" type="VBoxContainer" parent="PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=1193832526]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer" unique_id=667137072]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="DisplayFPSLabel" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer2" unique_id=2052558154]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_xhh6f")
+theme_override_font_sizes/font_size = 48
+text = "Display FPS"
+
+[node name="FPSCheckBox" type="CheckBox" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer2" unique_id=1475008861]
+layout_mode = 2
+size_flags_horizontal = 8
+focus_mode = 0
+theme_override_icons/checked = SubResource("DPITexture_7g1oc")
+theme_override_icons/unchecked = SubResource("DPITexture_ayv6d")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer" unique_id=863251774]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="LimitFPSLabel" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer" unique_id=855166472]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 1
+theme = ExtResource("1_xhh6f")
+theme_override_font_sizes/font_size = 48
+text = "Limit FPS"
+
+[node name="FPSOptionButton" type="OptionButton" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer" unique_id=1782629578]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_xhh6f")
+theme_override_font_sizes/font_size = 48
+selected = 0
+item_count = 6
+popup/item_0/text = "Unlimited"
+popup/item_0/id = 0
+popup/item_1/text = "60"
+popup/item_1/id = 1
+popup/item_2/text = "120"
+popup/item_2/id = 2
+popup/item_3/text = "144"
+popup/item_3/id = 3
+popup/item_4/text = "240"
+popup/item_4/id = 4
+popup/item_5/text = "Custom"
+popup/item_5/id = 5
+
+[node name="FPSCustomSpinbox" type="SpinBox" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer" unique_id=1669518557]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("1_xhh6f")
+min_value = 1.0
+max_value = 9999.0
+value = 60.0
+
+[node name="HSeparator3" type="HSeparator" parent="PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=799866471]
+layout_mode = 2
+theme = ExtResource("1_xhh6f")
+
+[node name="SensitivityHBoxContainer" type="HBoxContainer" parent="PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=302648141]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_xhh6f")
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="SensitivityLabel" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/SensitivityHBoxContainer" unique_id=205946568]
+layout_mode = 2
+size_flags_horizontal = 0
+theme = ExtResource("1_xhh6f")
+theme_override_font_sizes/font_size = 48
+text = "Sensitivity"
+
+[node name="SensitivityResetButton" type="Button" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/SensitivityHBoxContainer" unique_id=599654203]
+layout_mode = 2
+theme = ExtResource("1_xhh6f")
+theme_override_font_sizes/font_size = 48
+text = "Reset"
+
+[node name="SensitivitySlider" type="HSlider" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/SensitivityHBoxContainer" unique_id=1210250502]
+custom_minimum_size = Vector2(400, 48)
+layout_mode = 2
+size_flags_vertical = 1
+focus_mode = 0
+theme = ExtResource("1_xhh6f")
+min_value = 0.1
+max_value = 5.0
+step = 0.1
+value = 1.0
+
+[node name="SensitivitySpinBox" type="SpinBox" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/SensitivityHBoxContainer" unique_id=1589529633]
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("1_xhh6f")
+min_value = 0.1
+max_value = 5.0
+step = 0.1
+value = 1.0
+
+[node name="HSeparator4" type="HSeparator" parent="PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=650790339]
+layout_mode = 2
+theme = ExtResource("1_xhh6f")
+
+[node name="VisualsVBoxContainer" type="VBoxContainer" parent="PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=1363778141]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/VisualsVBoxContainer" unique_id=2078743049]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="BrightnessLabel" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/VisualsVBoxContainer/HBoxContainer" unique_id=1036226897]
+layout_mode = 2
+theme = ExtResource("1_xhh6f")
+theme_override_font_sizes/font_size = 48
+text = "Brightness"
+
+[node name="BrightnessResetButton" type="Button" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/VisualsVBoxContainer/HBoxContainer" unique_id=1547681869]
+layout_mode = 2
+theme = ExtResource("1_xhh6f")
+theme_override_font_sizes/font_size = 48
+text = "Reset"
+
+[node name="BrightnessSlider" type="HSlider" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/VisualsVBoxContainer/HBoxContainer" unique_id=378014819]
+custom_minimum_size = Vector2(400, 48)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_xhh6f")
+min_value = 0.8
+max_value = 1.2
+step = 0.01
+value = 1.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/VisualsVBoxContainer" unique_id=290785495]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="ContrastLabel" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/VisualsVBoxContainer/HBoxContainer2" unique_id=966425230]
+layout_mode = 2
+theme = ExtResource("1_xhh6f")
+theme_override_font_sizes/font_size = 48
+text = "Contrast"
+
+[node name="ContrastResetButton" type="Button" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/VisualsVBoxContainer/HBoxContainer2" unique_id=1916279944]
+layout_mode = 2
+theme = ExtResource("1_xhh6f")
+theme_override_font_sizes/font_size = 48
+text = "Reset"
+
+[node name="ContrastSlider" type="HSlider" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/VisualsVBoxContainer/HBoxContainer2" unique_id=727645082]
+custom_minimum_size = Vector2(400, 48)
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("1_xhh6f")
+min_value = 0.8
+max_value = 1.2
+step = 0.01
+value = 1.0
+
+[node name="HSeparator5" type="HSeparator" parent="PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=1835903780]
+layout_mode = 2
+theme = ExtResource("1_xhh6f")
+
+[node name="VolumeHBoxContainer2" type="HBoxContainer" parent="PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=26894525]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="AudioLabel" type="Label" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/VolumeHBoxContainer2" unique_id=263865831]
+layout_mode = 2
+theme = ExtResource("1_xhh6f")
+theme_override_font_sizes/font_size = 48
+text = "Master volume"
+
+[node name="AudioResetButton" type="Button" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/VolumeHBoxContainer2" unique_id=1156315479]
+layout_mode = 2
+theme = ExtResource("1_xhh6f")
+theme_override_font_sizes/font_size = 48
+text = "Reset"
+
+[node name="AudioHSlider" type="HSlider" parent="PanelContainer/Panel/MarginContainer/VBoxContainer/VolumeHBoxContainer2" unique_id=570977655]
+custom_minimum_size = Vector2(400, 48)
+layout_mode = 2
+theme = ExtResource("1_xhh6f")
+max_value = 2.0
+step = 0.001
+value = 1.0
+
+[node name="HSeparator6" type="HSeparator" parent="PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=546287022]
+layout_mode = 2
+theme = ExtResource("1_xhh6f")
+
+[node name="QuitButton" type="Button" parent="PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=979634645]
+layout_mode = 2
+size_flags_horizontal = 4
+focus_mode = 0
+theme = ExtResource("1_xhh6f")
+theme_override_font_sizes/font_size = 48
+text = "Quit"
+
+[connection signal="toggled" from="PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer2/FPSCheckBox" to="." method="_on_fps_check_box_toggled"]
+[connection signal="item_selected" from="PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer/FPSOptionButton" to="." method="_on_fps_option_button_item_selected"]
+[connection signal="value_changed" from="PanelContainer/Panel/MarginContainer/VBoxContainer/FPSVBoxContainer/HBoxContainer/FPSCustomSpinbox" to="." method="_on_fps_custom_spinbox_value_changed"]
+[connection signal="pressed" from="PanelContainer/Panel/MarginContainer/VBoxContainer/SensitivityHBoxContainer/SensitivityResetButton" to="." method="_on_sensitivity_reset_button_pressed"]
+[connection signal="value_changed" from="PanelContainer/Panel/MarginContainer/VBoxContainer/SensitivityHBoxContainer/SensitivitySlider" to="." method="_on_sensitivity_slider_value_changed"]
+[connection signal="value_changed" from="PanelContainer/Panel/MarginContainer/VBoxContainer/SensitivityHBoxContainer/SensitivitySpinBox" to="." method="_on_spin_box_value_changed"]
+[connection signal="pressed" from="PanelContainer/Panel/MarginContainer/VBoxContainer/VisualsVBoxContainer/HBoxContainer/BrightnessResetButton" to="." method="_on_brightness_reset_button_pressed"]
+[connection signal="value_changed" from="PanelContainer/Panel/MarginContainer/VBoxContainer/VisualsVBoxContainer/HBoxContainer/BrightnessSlider" to="." method="_on_brightness_slider_value_changed"]
+[connection signal="pressed" from="PanelContainer/Panel/MarginContainer/VBoxContainer/VisualsVBoxContainer/HBoxContainer2/ContrastResetButton" to="." method="_on_contrast_reset_button_pressed"]
+[connection signal="value_changed" from="PanelContainer/Panel/MarginContainer/VBoxContainer/VisualsVBoxContainer/HBoxContainer2/ContrastSlider" to="." method="_on_contrast_slider_value_changed"]
+[connection signal="pressed" from="PanelContainer/Panel/MarginContainer/VBoxContainer/VolumeHBoxContainer2/AudioResetButton" to="." method="_on_audio_reset_button_pressed"]
+[connection signal="value_changed" from="PanelContainer/Panel/MarginContainer/VBoxContainer/VolumeHBoxContainer2/AudioHSlider" to="." method="_on_audio_h_slider_value_changed"]
+[connection signal="pressed" from="PanelContainer/Panel/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

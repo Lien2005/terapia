@@ -1,11 +1,11 @@
 [gd_scene format=4 uid="uid://bf1er2k4yrs72"]
 
 [ext_resource type="Material" uid="uid://d0igh80x0y8e0" path="res://Meshes/night_sky.tres" id="1_ckpq3"]
-[ext_resource type="Script" uid="uid://ltakavpl7e1c" path="res://Scripts/UI/menu.gd" id="2_udoo7"]
-[ext_resource type="Script" uid="uid://c2era8oplkuj0" path="res://Scripts/UI/fps_label.gd" id="3_fur6u"]
 [ext_resource type="AudioStream" uid="uid://bhb668d1t3b8a" path="res://Audio/night.mp3" id="4_ckpq3"]
+[ext_resource type="PackedScene" uid="uid://r2n6wxrf3mei" path="res://Scenes/fps_label.tscn" id="4_fur6u"]
 [ext_resource type="Script" uid="uid://dbcq52okf1vtm" path="res://Scripts/interact_label.gd" id="5_7g1oc"]
 [ext_resource type="PackedScene" uid="uid://c23bgi0tax2pw" path="res://Scenes/player.tscn" id="5_ayv6d"]
+[ext_resource type="PackedScene" uid="uid://bo0w5oalygcam" path="res://Scenes/menu.tscn" id="6_7g1oc"]
 [ext_resource type="Shader" uid="uid://b33m24k5aa81y" path="res://Shaders/terrain.gdshader" id="6_kp0df"]
 [ext_resource type="Texture2D" uid="uid://b5ru32t5qtwp4" path="res://Assets/Nature/TerrainTexture/2K/Poliigon_GrassPatchyGround_4585_BaseColor.jpg" id="7_kyc5m"]
 [ext_resource type="Texture2D" uid="uid://bgd1bsjwb8otv" path="res://Assets/Nature/TerrainTexture/2K/Poliigon_GrassPatchyGround_4585_Normal.png" id="8_e4seg"]
@@ -19,13 +19,13 @@
 [ext_resource type="PackedScene" uid="uid://dsqgf2x3m3bpb" path="res://Scenes/Nature/Rocks/rock_1.tscn" id="15_akuer"]
 [ext_resource type="PackedScene" uid="uid://df2uvgq7qer8" path="res://Scenes/Nature/Rocks/rock_2.tscn" id="16_gtuhl"]
 
-[sub_resource type="Sky" id="Sky_bo1nx"]
+[sub_resource type="Sky" id="Sky_7g1oc"]
 sky_material = ExtResource("1_ckpq3")
 
 [sub_resource type="Environment" id="Environment_t1olt"]
 background_mode = 2
 background_color = Color(0.29, 0.29, 0.29, 1)
-sky = SubResource("Sky_bo1nx")
+sky = SubResource("Sky_7g1oc")
 ambient_light_color = Color(0.17, 0.17, 0.17, 1)
 tonemap_mode = 3
 tonemap_exposure = 0.6
@@ -39,60 +39,6 @@ fog_depth_end = 160.0
 volumetric_fog_density = 0.01
 volumetric_fog_albedo = Color(0.31, 0.31, 0.31, 1)
 adjustment_enabled = true
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_udoo7"]
-content_margin_left = 4.0
-content_margin_top = 0.0
-content_margin_right = 4.0
-content_margin_bottom = 0.0
-color = Color(0.5, 0.5, 0.5, 1)
-thickness = 4
-
-[sub_resource type="Theme" id="Theme_7g1oc"]
-default_font_size = 32
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_7g1oc"]
-content_margin_left = 4.0
-content_margin_top = 0.0
-content_margin_right = 4.0
-content_margin_bottom = 0.0
-color = Color(0.5, 0.5, 0.5, 1)
-thickness = 4
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fur6u"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(0.1, 0.1, 0.1, 0.6)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-expand_margin_top = 4.0
-expand_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7g1oc"]
-bg_color = Color(1, 1, 1, 0.4)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-expand_margin_top = 4.0
-expand_margin_bottom = 4.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ayv6d"]
-content_margin_left = 4.0
-content_margin_top = 4.0
-content_margin_right = 4.0
-content_margin_bottom = 4.0
-bg_color = Color(1, 1, 1, 0.75)
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
-expand_margin_top = 4.0
-expand_margin_bottom = 4.0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_fur6u"]
 _surfaces = [{
@@ -190,260 +136,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("5_7g1oc")
 
-[node name="Menu" type="Control" parent="UI" unique_id=642241204 node_paths=PackedStringArray("panel_container", "quit_button", "fps_label", "sensitivity_slider", "sensitivity_spin_box", "world_environment", "brightness_slider", "contrast_slider", "fps_custom_spinbox")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-script = ExtResource("2_udoo7")
-panel_container = NodePath("PanelContainer")
-quit_button = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/QuitButton")
-fps_label = NodePath("../FPSLabel")
-sensitivity_slider = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel/SensitivitySlider")
-sensitivity_spin_box = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel/SensitivitySpinBox")
-world_environment = NodePath("../../WorldEnvironment")
-brightness_slider = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/BrightnessLabel/BrightnessSlider")
-contrast_slider = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/ContrastLabel/ContrastSlider")
-fps_custom_spinbox = NodePath("PanelContainer/Panel/MarginContainer/VBoxContainer/LimitFPSLabel/FPSCustomSpinbox")
+[node name="FPSLabel" parent="UI" unique_id=423396973 instance=ExtResource("4_fur6u")]
 
-[node name="PanelContainer" type="PanelContainer" parent="UI/Menu" unique_id=1832222838]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 12.000001
-anchor_bottom = 6.7500005
-offset_left = 260.0
-offset_top = 90.0
-offset_right = -21380.002
-offset_bottom = -6300.0005
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Panel" type="Panel" parent="UI/Menu/PanelContainer" unique_id=931400823]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="UI/Menu/PanelContainer/Panel" unique_id=385591796]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 20.0
-offset_top = -383.5
-offset_right = -20.0
-offset_bottom = 383.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Menu/PanelContainer/Panel/MarginContainer" unique_id=72402595]
-layout_mode = 2
-theme_override_constants/separation = 40
-
-[node name="MenuLabel" type="Label" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=920829993]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 48
-text = "Menu"
-
-[node name="HSeparator" type="HSeparator" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=1269670420]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_udoo7")
-
-[node name="DisplayFPSLabel" type="Label" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=301356702]
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Display FPS"
-
-[node name="FPSCheckButton" type="CheckButton" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/DisplayFPSLabel" unique_id=1644065287]
-layout_mode = 0
-offset_left = 1213.0
-offset_top = -21.0
-offset_right = 1257.0
-offset_bottom = 3.0
-scale = Vector2(4, 4)
-size_flags_horizontal = 8
-focus_mode = 0
-
-[node name="LimitFPSLabel" type="Label" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=1740137381]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 1
-theme_override_font_sizes/font_size = 48
-text = "Limit FPS"
-
-[node name="FPSOptionButton" type="OptionButton" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/LimitFPSLabel" unique_id=1088509837]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = 747.0
-offset_top = -24.5
-offset_right = 1072.0
-offset_bottom = 32.5
-grow_horizontal = 0
-grow_vertical = 2
-focus_mode = 0
-theme_override_font_sizes/font_size = 48
-selected = 0
-item_count = 6
-popup/item_0/text = "Unlimited"
-popup/item_0/id = 0
-popup/item_1/text = "60"
-popup/item_1/id = 1
-popup/item_2/text = "120"
-popup/item_2/id = 2
-popup/item_3/text = "144"
-popup/item_3/id = 3
-popup/item_4/text = "240"
-popup/item_4/id = 4
-popup/item_5/text = "Custom"
-popup/item_5/id = 5
-
-[node name="FPSCustomSpinbox" type="SpinBox" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/LimitFPSLabel" unique_id=209219023]
+[node name="Menu" parent="UI" unique_id=1794024812 node_paths=PackedStringArray("fps_label", "world_environment") instance=ExtResource("6_7g1oc")]
 visible = false
-layout_mode = 0
-offset_left = 846.0
-offset_right = 1016.0
-offset_bottom = 49.0
-size_flags_horizontal = 8
-theme = SubResource("Theme_7g1oc")
-min_value = 1.0
-max_value = 9999.0
-value = 60.0
-
-[node name="HSeparator3" type="HSeparator" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=1451783717]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_7g1oc")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=1109911268]
-layout_mode = 2
-size_flags_horizontal = 0
-alignment = 1
-
-[node name="SensitivityLabel" type="Label" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1751724632]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_font_sizes/font_size = 48
-text = "Sensitivity"
-
-[node name="SensitivityResetButton" type="Button" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel" unique_id=591870655]
-layout_mode = 0
-offset_left = 516.0
-offset_right = 673.0
-offset_bottom = 57.0
-theme_override_font_sizes/font_size = 48
-text = "Reset"
-
-[node name="SensitivitySlider" type="HSlider" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel" unique_id=1637737926]
-custom_minimum_size = Vector2(400, 48)
-layout_mode = 0
-offset_left = 688.0
-offset_right = 1088.0
-offset_bottom = 49.0
-size_flags_vertical = 1
-focus_mode = 0
-theme_override_styles/slider = SubResource("StyleBoxFlat_fur6u")
-theme_override_styles/grabber_area = SubResource("StyleBoxFlat_7g1oc")
-theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_ayv6d")
-min_value = 0.1
-max_value = 5.0
-step = 0.1
-value = 1.0
-
-[node name="SensitivitySpinBox" type="SpinBox" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel" unique_id=1802166324]
-layout_mode = 0
-offset_left = 1191.0
-offset_right = 1361.0
-offset_bottom = 49.0
-size_flags_horizontal = 8
-theme = SubResource("Theme_7g1oc")
-min_value = 0.1
-max_value = 5.0
-step = 0.1
-value = 1.0
-
-[node name="HSeparator4" type="HSeparator" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=2103998878]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_udoo7")
-
-[node name="BrightnessLabel" type="Label" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=419814572]
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Brightness"
-
-[node name="BrightnessResetButton" type="Button" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/BrightnessLabel" unique_id=863553549]
-layout_mode = 0
-offset_left = 753.0
-offset_right = 910.0
-offset_bottom = 57.0
-theme_override_font_sizes/font_size = 48
-text = "Reset"
-
-[node name="BrightnessSlider" type="HSlider" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/BrightnessLabel" unique_id=731876388]
-custom_minimum_size = Vector2(400, 48)
-layout_mode = 0
-offset_left = 958.0
-offset_right = 1358.0
-offset_bottom = 48.0
-focus_mode = 0
-min_value = 0.8
-max_value = 1.2
-step = 0.01
-value = 1.0
-
-[node name="ContrastLabel" type="Label" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=2126457763]
-layout_mode = 2
-theme_override_font_sizes/font_size = 48
-text = "Contrast"
-
-[node name="ContrastResetButton" type="Button" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/ContrastLabel" unique_id=66599230]
-layout_mode = 0
-offset_left = 753.0
-offset_right = 910.0
-offset_bottom = 57.0
-theme_override_font_sizes/font_size = 48
-text = "Reset"
-
-[node name="ContrastSlider" type="HSlider" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/ContrastLabel" unique_id=2071566231]
-custom_minimum_size = Vector2(400, 48)
-layout_mode = 0
-offset_left = 958.0
-offset_right = 1358.0
-offset_bottom = 48.0
-focus_mode = 0
-min_value = 0.8
-max_value = 1.2
-step = 0.01
-value = 1.0
-
-[node name="HSeparator5" type="HSeparator" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=1305150712]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_udoo7")
-
-[node name="QuitButton" type="Button" parent="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer" unique_id=168483982]
-layout_mode = 2
-size_flags_horizontal = 4
-focus_mode = 0
-theme_override_font_sizes/font_size = 48
-text = "Quit"
-
-[node name="FPSLabel" type="Label" parent="UI" unique_id=283481881]
-texture_filter = 1
-offset_left = 12.0
-offset_top = 12.0
-offset_right = 175.0
-offset_bottom = 45.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme_override_font_sizes/font_size = 32
-text = "FPS: 100"
-script = ExtResource("3_fur6u")
+fps_label = NodePath("../FPSLabel")
+world_environment = NodePath("../../WorldEnvironment")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1490088930]
 stream = ExtResource("4_ckpq3")
@@ -465,19 +163,7 @@ rock_scene_1 = ExtResource("15_akuer")
 rock_scene_2 = ExtResource("16_gtuhl")
 grass_patch_scene_1 = ExtResource("14_ckpq3")
 
-[node name="Terrain_col" type="StaticBody3D" parent="Terrain" unique_id=942496101]
+[node name="Terrain_col" type="StaticBody3D" parent="Terrain" unique_id=1485900450]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Terrain_col" unique_id=1412428826]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Terrain_col" unique_id=687236832]
 shape = SubResource("ConcavePolygonShape3D_7g1oc")
-
-[connection signal="toggled" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/DisplayFPSLabel/FPSCheckButton" to="UI/Menu" method="_on_fps_check_button_toggled"]
-[connection signal="item_selected" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/LimitFPSLabel/FPSOptionButton" to="UI/Menu" method="_on_fps_option_button_item_selected"]
-[connection signal="value_changed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/LimitFPSLabel/FPSCustomSpinbox" to="UI/Menu" method="_on_fps_custom_spinbox_value_changed"]
-[connection signal="pressed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel/SensitivityResetButton" to="UI/Menu" method="_on_sensitivity_reset_button_pressed"]
-[connection signal="value_changed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel/SensitivitySlider" to="UI/Menu" method="_on_sensitivity_slider_value_changed"]
-[connection signal="value_changed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/HBoxContainer/SensitivityLabel/SensitivitySpinBox" to="UI/Menu" method="_on_spin_box_value_changed"]
-[connection signal="pressed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/BrightnessLabel/BrightnessResetButton" to="UI/Menu" method="_on_brightness_reset_button_pressed"]
-[connection signal="value_changed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/BrightnessLabel/BrightnessSlider" to="UI/Menu" method="_on_brightness_slider_value_changed"]
-[connection signal="pressed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/ContrastLabel/ContrastResetButton" to="UI/Menu" method="_on_contrast_reset_button_pressed"]
-[connection signal="value_changed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/ContrastLabel/ContrastSlider" to="UI/Menu" method="_on_contrast_slider_value_changed"]
-[connection signal="pressed" from="UI/Menu/PanelContainer/Panel/MarginContainer/VBoxContainer/QuitButton" to="UI/Menu" method="_on_quit_button_pressed"]

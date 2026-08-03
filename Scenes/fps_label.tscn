@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://r2n6wxrf3mei"]
+
+[ext_resource type="Theme" uid="uid://cgk44imj4kifc" path="res://Resources/menu_theme.tres" id="1_fsx6d"]
+[ext_resource type="Script" uid="uid://c2era8oplkuj0" path="res://Scripts/UI/fps_label.gd" id="2_ytctg"]
+
+[node name="FPSLabel" type="Label" unique_id=423396973]
+visible = false
+texture_filter = 1
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 175.0
+offset_bottom = 45.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("1_fsx6d")
+theme_override_font_sizes/font_size = 32
+text = "FPS: 100"
+script = ExtResource("2_ytctg")
