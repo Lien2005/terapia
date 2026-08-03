@@ -165,3 +165,11 @@ func _on_resolution_option_button_item_selected(index: int) -> void:
 	Global.screen_size = index
 	var key = resolution_option_button.get_item_text(index)
 	DisplayServer.window_set_size(resolutions[key])
+
+
+func _on_x_button_pressed() -> void:
+	hide()
+	if(get_tree().current_scene.scene_file_path == "res://Scenes/main_menu.tscn"):
+		return
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
