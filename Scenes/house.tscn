@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://fkrrphqa288f"]
+
+[ext_resource type="ArrayMesh" uid="uid://d32uyccf8po3g" path="res://Meshes/house.res" id="1_okrnj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0bs4g"]
+
+[node name="House" type="StaticBody3D" unique_id=422094371]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=454581465]
+shape = SubResource("BoxShape3D_0bs4g")
+
+[node name="HouseMesh" type="MeshInstance3D" parent="." unique_id=1185018330]
+mesh = ExtResource("1_okrnj")
+
+[node name="DoorMesh" type="MeshInstance3D" parent="." unique_id=846494227]
+
+[node name="WindowMesh" type="MeshInstance3D" parent="." unique_id=627039873]
+
+[node name="RoofMesh" type="MeshInstance3D" parent="." unique_id=1240135411]

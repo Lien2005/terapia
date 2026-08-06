@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://ltakavpl7e1c" path="res://Scripts/UI/menu.gd" id="2_cayip"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xhh6f"]
-content_margin_left = 22.0
+content_margin_left = 16.0
 content_margin_top = 4.0
 content_margin_right = 16.0
 content_margin_bottom = 4.0
@@ -17,7 +17,7 @@ shadow_color = Color(1, 0, 0, 0.6)
 shadow_size = 4
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cayip"]
-content_margin_left = 22.0
+content_margin_left = 16.0
 content_margin_top = 4.0
 content_margin_right = 16.0
 content_margin_bottom = 8.0
@@ -30,7 +30,7 @@ shadow_color = Color(1, 1, 1, 0.6)
 shadow_size = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_158mb"]
-content_margin_left = 22.0
+content_margin_left = 16.0
 content_margin_top = 4.0
 content_margin_right = 16.0
 content_margin_bottom = 4.0

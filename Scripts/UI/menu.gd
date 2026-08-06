@@ -58,9 +58,11 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("menu"):
 		visible = not visible
 		if visible == true:
+			Engine.time_scale = 0
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 			mouse_filter = Control.MOUSE_FILTER_STOP
 		else:
+			Engine.time_scale = 1
 			if(get_tree().current_scene.scene_file_path == "res://Scenes/main_menu.tscn"):
 				return
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -149,7 +151,8 @@ func _on_screen_option_button_item_selected(index: int) -> void:
 			Global.screen_mode = 0
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			var screen_size := DisplayServer.screen_get_size()
-			var window_size := Vector2i(1280, 720)
+			var key = resolution_option_button.get_item_text(resolution_option_button.selected)
+			var window_size: Vector2i = resolutions[key]
 			DisplayServer.window_set_size(window_size)
 			@warning_ignore("integer_division")
 			DisplayServer.window_set_position((screen_size - window_size) / 2)
@@ -169,6 +172,7 @@ func _on_resolution_option_button_item_selected(index: int) -> void:
 
 func _on_x_button_pressed() -> void:
 	hide()
+	Engine.time_scale = 1
 	if(get_tree().current_scene.scene_file_path == "res://Scenes/main_menu.tscn"):
 		return
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

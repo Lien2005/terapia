@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://uqupnowbvcwm" path="res://Scenes/Nature/bush_1.tscn" id="14_o5b3w"]
 [ext_resource type="PackedScene" uid="uid://dsqgf2x3m3bpb" path="res://Scenes/Nature/Rocks/rock_1.tscn" id="15_akuer"]
 [ext_resource type="PackedScene" uid="uid://df2uvgq7qer8" path="res://Scenes/Nature/Rocks/rock_2.tscn" id="16_gtuhl"]
+[ext_resource type="PackedScene" uid="uid://fkrrphqa288f" path="res://Scenes/house.tscn" id="19_7g1oc"]
 
 [sub_resource type="Sky" id="Sky_7g1oc"]
 sky_material = ExtResource("1_ckpq3")
@@ -163,7 +164,10 @@ rock_scene_1 = ExtResource("15_akuer")
 rock_scene_2 = ExtResource("16_gtuhl")
 grass_patch_scene_1 = ExtResource("14_ckpq3")
 
-[node name="Terrain_col" type="StaticBody3D" parent="Terrain" unique_id=1485900450]
+[node name="Terrain_col" type="StaticBody3D" parent="Terrain" unique_id=2089619974]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Terrain_col" unique_id=687236832]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain/Terrain_col" unique_id=429854200]
 shape = SubResource("ConcavePolygonShape3D_7g1oc")
+
+[node name="House" parent="." unique_id=422094371 instance=ExtResource("19_7g1oc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.096317, 5.1683235, -39.990158)
